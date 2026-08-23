@@ -1,0 +1,1258 @@
+/* ========================================
+   RESET
+======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: #111111;
+  line-height: 1.5;
+}
+
+body,
+button,
+a {
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+
+/* ========================================
+   GENERAL
+======================================== */
+
+.container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+}
+
+.section {
+  padding: 110px 0;
+}
+
+.section-heading {
+  max-width: 700px;
+  margin-bottom: 55px;
+}
+
+.section-heading > span,
+.features-title > span {
+  display: block;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 2.5px;
+
+  margin-bottom: 15px;
+}
+
+.section-heading h2,
+.features-title h2 {
+  font-size: clamp(36px, 5vw, 64px);
+
+  line-height: 0.95;
+
+  letter-spacing: -3px;
+
+  margin-bottom: 20px;
+}
+
+.section-heading p {
+  color: #666;
+  max-width: 550px;
+}
+
+
+/* ========================================
+   ANNOUNCEMENT BAR
+======================================== */
+
+.announcement-bar {
+  background: #111111;
+  color: #ffffff;
+
+  min-height: 36px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 8px 20px;
+
+  text-align: center;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 1.8px;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.header {
+  background: rgba(255, 255, 255, 0.96);
+
+  border-bottom: 1px solid #eeeeee;
+
+  position: sticky;
+  top: 0;
+
+  z-index: 1000;
+
+  backdrop-filter: blur(10px);
+}
+
+.header-content {
+  min-height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 22px;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+}
+
+.header-button {
+  background: #111;
+  color: #fff;
+
+  padding: 12px 24px;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+
+  transition: 0.25s ease;
+}
+
+.header-button:hover {
+  opacity: 0.8;
+}
+
+
+/* ========================================
+   PRODUCT
+======================================== */
+
+.product-section {
+  padding: 60px 0 110px;
+}
+
+.product-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(360px, 0.85fr);
+
+  gap: 75px;
+
+  align-items: start;
+}
+
+
+/* ========================================
+   PRODUCT GALLERY
+======================================== */
+
+.main-image-wrapper {
+  background: #f1f1f1;
+
+  overflow: hidden;
+}
+
+.main-product-image {
+  width: 100%;
+
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.4s ease;
+}
+
+.main-image-wrapper:hover .main-product-image {
+  transform: scale(1.015);
+}
+
+.product-thumbnails {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 10px;
+
+  margin-top: 12px;
+}
+
+.thumbnail {
+  background: #f1f1f1;
+
+  padding: 0;
+
+  border: 2px solid transparent;
+
+  overflow: hidden;
+
+  transition: 0.2s ease;
+}
+
+.thumbnail:hover {
+  opacity: 0.8;
+}
+
+.thumbnail.active {
+  border-color: #111111;
+}
+
+.thumbnail img {
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+}
+
+
+/* ========================================
+   PRODUCT INFO
+======================================== */
+
+.product-info {
+  position: sticky;
+
+  top: 120px;
+}
+
+.product-tag {
+  display: inline-block;
+
+  background: #111;
+  color: #fff;
+
+  padding: 6px 10px;
+
+  margin-bottom: 20px;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.product-info h1 {
+  font-size: clamp(40px, 5vw, 66px);
+
+  line-height: 0.9;
+
+  letter-spacing: -3px;
+
+  margin-bottom: 22px;
+
+  max-width: 550px;
+}
+
+
+/* ========================================
+   RATING
+======================================== */
+
+.rating {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 20px;
+}
+
+.rating > span,
+.stars {
+  letter-spacing: 2px;
+
+  font-size: 13px;
+}
+
+.rating small {
+  color: #666;
+
+  font-size: 12px;
+}
+
+
+/* ========================================
+   PRICE
+======================================== */
+
+.product-price {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 25px;
+}
+
+.current-price {
+  font-size: 27px;
+
+  font-weight: 900;
+}
+
+.old-price {
+  color: #999;
+
+  text-decoration: line-through;
+
+  font-size: 16px;
+}
+
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.product-description {
+  color: #5d5d5d;
+
+  max-width: 520px;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+
+  margin-bottom: 25px;
+}
+
+
+/* ========================================
+   QUICK BENEFITS
+======================================== */
+
+.quick-benefits {
+  display: grid;
+
+  gap: 8px;
+
+  background: #f6f6f6;
+
+  padding: 18px;
+
+  margin-bottom: 15px;
+
+  font-size: 12px;
+
+  color: #333;
+}
+
+
+/* ========================================
+   OPTIONS
+======================================== */
+
+.product-option {
+  padding: 22px 0;
+
+  border-top: 1px solid #e6e6e6;
+}
+
+.option-title {
+  font-size: 11px;
+
+  letter-spacing: 0.8px;
+
+  margin-bottom: 15px;
+}
+
+
+/* ========================================
+   COLORS
+======================================== */
+
+.color-options {
+  display: flex;
+
+  gap: 12px;
+
+  align-items: center;
+}
+
+.color-option {
+  width: 35px;
+  height: 35px;
+
+  border-radius: 50%;
+
+  border: 3px solid white;
+
+  outline: 1px solid #cfcfcf;
+
+  transition: 0.2s ease;
+}
+
+.color-option:hover {
+  transform: scale(1.08);
+}
+
+.color-option.active {
+  outline: 2px solid #111;
+}
+
+.color-black {
+  background: #111;
+}
+
+.color-gray {
+  background: #777;
+}
+
+.color-white {
+  background: #fff;
+}
+
+
+/* ========================================
+   SIZES
+======================================== */
+
+.size-options {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+.size-options button {
+  min-width: 58px;
+
+  height: 48px;
+
+  background: #fff;
+
+  color: #111;
+
+  border: 1px solid #d0d0d0;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  transition: 0.2s ease;
+}
+
+.size-options button:hover {
+  border-color: #111;
+}
+
+.size-options button.selected {
+  background: #111;
+
+  color: #fff;
+
+  border-color: #111;
+}
+
+
+/* ========================================
+   QUANTITY
+======================================== */
+
+.quantity-selector {
+  width: 135px;
+
+  height: 48px;
+
+  border: 1px solid #d0d0d0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+.quantity-selector button {
+  width: 42px;
+
+  height: 100%;
+
+  border: none;
+
+  background: transparent;
+
+  font-size: 18px;
+}
+
+.quantity-selector button:hover {
+  background: #f2f2f2;
+}
+
+.quantity-selector span {
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+
+/* ========================================
+   BUY BUTTON
+======================================== */
+
+.buy-button {
+  width: 100%;
+
+  min-height: 60px;
+
+  margin: 10px 0 20px;
+
+  border: none;
+
+  background: #111;
+
+  color: #fff;
+
+  font-size: 12px;
+
+  font-weight: 900;
+
+  letter-spacing: 1.4px;
+
+  transition: 0.25s ease;
+}
+
+.buy-button:hover {
+  background: #2b2b2b;
+}
+
+
+/* ========================================
+   PAYMENT INFO
+======================================== */
+
+.payment-info {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 8px;
+
+  color: #666;
+
+  font-size: 10px;
+}
+
+
+/* ========================================
+   BENEFITS SECTION
+======================================== */
+
+.benefits-section {
+  background: #f3f3f3;
+}
+
+.benefits-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 18px;
+}
+
+.benefit-card {
+  background: #fff;
+
+  padding: 40px;
+
+  min-height: 300px;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+.benefit-number {
+  font-size: 11px;
+
+  font-weight: 900;
+
+  margin-bottom: auto;
+}
+
+.benefit-card h3 {
+  font-size: 23px;
+
+  letter-spacing: -1px;
+
+  margin-bottom: 12px;
+}
+
+.benefit-card p {
+  color: #666;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+
+/* ========================================
+   BANNER
+======================================== */
+
+.banner-section {
+  position: relative;
+
+  min-height: 720px;
+
+  background-image:
+    url("https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=1800&q=85");
+
+  background-position: center;
+
+  background-size: cover;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  color: #fff;
+}
+
+.banner-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.75),
+      rgba(0, 0, 0, 0.05)
+    );
+}
+
+.banner-content {
+  position: relative;
+
+  z-index: 2;
+
+  padding-bottom: 80px;
+}
+
+.banner-content span {
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.banner-content h2 {
+  max-width: 850px;
+
+  font-size: clamp(45px, 7vw, 85px);
+
+  line-height: 0.9;
+
+  letter-spacing: -4px;
+
+  margin: 18px 0 22px;
+}
+
+.banner-content p {
+  max-width: 500px;
+
+  font-size: 15px;
+
+  color: #e3e3e3;
+
+  line-height: 1.7;
+
+  margin-bottom: 30px;
+}
+
+.banner-content a {
+  display: inline-block;
+
+  background: #fff;
+
+  color: #111;
+
+  padding: 16px 30px;
+
+  font-size: 11px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+}
+
+
+/* ========================================
+   FEATURES
+======================================== */
+
+.features-grid {
+  display: grid;
+
+  grid-template-columns:
+    0.9fr 1.1fr;
+
+  gap: 100px;
+}
+
+.features-list {
+  border-top: 1px solid #ddd;
+}
+
+.feature {
+  display: grid;
+
+  grid-template-columns:
+    50px 1fr;
+
+  gap: 20px;
+
+  padding: 32px 0;
+
+  border-bottom: 1px solid #ddd;
+}
+
+.feature > span {
+  font-size: 10px;
+
+  font-weight: 900;
+}
+
+.feature h3 {
+  font-size: 20px;
+
+  margin-bottom: 8px;
+}
+
+.feature p {
+  color: #666;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+
+/* ========================================
+   REVIEWS
+======================================== */
+
+.reviews-section {
+  background: #111;
+
+  color: #fff;
+}
+
+.review-heading p {
+  color: #999;
+}
+
+.reviews-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 18px;
+}
+
+.review-card {
+  border: 1px solid #333;
+
+  padding: 35px;
+
+  min-height: 280px;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+.review-card p {
+  font-size: 18px;
+
+  line-height: 1.5;
+
+  color: #dedede;
+
+  margin: 30px 0;
+
+  flex: 1;
+}
+
+.review-card strong {
+  font-size: 10px;
+
+  letter-spacing: 1px;
+}
+
+
+/* ========================================
+   FAQ
+======================================== */
+
+.faq-container {
+  max-width: 900px;
+}
+
+.faq-list {
+  border-top: 1px solid #ddd;
+}
+
+.faq-item {
+  border-bottom: 1px solid #ddd;
+}
+
+.faq-question {
+  width: 100%;
+
+  border: none;
+
+  background: transparent;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 27px 0;
+
+  text-align: left;
+}
+
+.faq-title {
+  font-size: 16px;
+
+  font-weight: 700;
+}
+
+.faq-icon {
+  font-size: 22px;
+
+  font-weight: 300;
+
+  margin-left: 20px;
+}
+
+.faq-answer {
+  max-height: 0;
+
+  overflow: hidden;
+
+  transition: max-height 0.3s ease;
+}
+
+.faq-answer p {
+  padding: 0 40px 27px 0;
+
+  color: #666;
+
+  line-height: 1.7;
+
+  font-size: 14px;
+}
+
+
+/* ========================================
+   FINAL CTA
+======================================== */
+
+.final-cta {
+  background: #eeeeee;
+
+  padding: 130px 0;
+
+  text-align: center;
+}
+
+.final-cta span {
+  font-size: 10px;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+}
+
+.final-cta h2 {
+  font-size: clamp(45px, 7vw, 82px);
+
+  line-height: 0.9;
+
+  letter-spacing: -4px;
+
+  margin: 18px 0 40px;
+}
+
+.final-cta a {
+  display: inline-block;
+
+  background: #111;
+
+  color: #fff;
+
+  padding: 17px 35px;
+
+  font-size: 11px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.footer {
+  background: #111;
+
+  color: #fff;
+
+  padding: 45px 0;
+}
+
+.footer-content {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+.footer-content > strong {
+  letter-spacing: 2px;
+}
+
+.footer-links {
+  display: flex;
+
+  gap: 25px;
+
+  font-size: 11px;
+
+  color: #aaa;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+.footer p {
+  color: #777;
+
+  font-size: 10px;
+}
+
+
+/* ========================================
+   MOBILE BUY BAR
+======================================== */
+
+.mobile-buy-bar {
+  display: none;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 950px) {
+
+  .product-grid {
+    grid-template-columns: 1fr;
+
+    gap: 45px;
+  }
+
+  .product-info {
+    position: static;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .benefit-card {
+    min-height: 230px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+  body {
+    padding-bottom: 76px;
+  }
+
+  .container {
+    width: 92%;
+  }
+
+  .section {
+    padding: 75px 0;
+  }
+
+
+  /* HEADER */
+
+  .header-content {
+    min-height: 62px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .header-button {
+    padding: 10px 17px;
+
+    font-size: 9px;
+  }
+
+
+  /* PRODUCT */
+
+  .product-section {
+    padding: 0 0 70px;
+  }
+
+  .product-grid {
+    width: 100%;
+
+    gap: 30px;
+  }
+
+  .product-gallery {
+    width: 100%;
+  }
+
+  .product-info {
+    width: 92%;
+
+    margin: 0 auto;
+  }
+
+  .main-product-image {
+    aspect-ratio: 1 / 1.1;
+  }
+
+  .product-thumbnails {
+    padding: 0 4%;
+  }
+
+  .product-info h1 {
+    font-size: 42px;
+
+    letter-spacing: -2px;
+  }
+
+  .current-price {
+    font-size: 24px;
+  }
+
+  .payment-info {
+    display: grid;
+
+    grid-template-columns:
+      1fr 1fr;
+
+    gap: 10px;
+  }
+
+
+  /* SECTIONS */
+
+  .section-heading h2,
+  .features-title h2 {
+    letter-spacing: -2px;
+  }
+
+  .benefit-card {
+    padding: 30px;
+
+    min-height: 220px;
+  }
+
+
+  /* BANNER */
+
+  .banner-section {
+    min-height: 600px;
+  }
+
+  .banner-content {
+    padding-bottom: 50px;
+  }
+
+  .banner-content h2 {
+    letter-spacing: -2px;
+  }
+
+
+  /* FINAL CTA */
+
+  .final-cta {
+    padding: 90px 0;
+  }
+
+  .final-cta h2 {
+    letter-spacing: -2px;
+  }
+
+
+  /* FOOTER */
+
+  .footer-content {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+  }
+
+
+  /* MOBILE BUY BAR */
+
+  .mobile-buy-bar {
+    position: fixed;
+
+    bottom: 0;
+    left: 0;
+
+    z-index: 9999;
+
+    width: 100%;
+
+    height: 76px;
+
+    background: #fff;
+
+    border-top: 1px solid #ddd;
+
+    box-shadow:
+      0 -8px 30px
+      rgba(0, 0, 0, 0.08);
+
+    padding: 10px 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+  }
+
+  .mobile-price {
+    display: flex;
+
+    flex-direction: column;
+
+    flex-shrink: 0;
+  }
+
+  .mobile-price small {
+    font-size: 8px;
+
+    color: #777;
+  }
+
+  .mobile-price strong {
+    font-size: 16px;
+  }
+
+  .mobile-buy-bar button {
+    flex: 1;
+
+    max-width: 210px;
+
+    height: 52px;
+
+    border: none;
+
+    background: #111;
+
+    color: #fff;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+  }
+
+}
