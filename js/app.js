@@ -1,21 +1,46 @@
-/* ===================================
-   ELEMENTOS
-=================================== */
+/* ==========================================
+   RS IMPORTS
+   LANDING PAGE - CAJA FUERTE DIGITAL
+========================================== */
 
-const mainImage =
+
+/* ==========================================
+   ELEMENTOS DE LA GALERÍA
+========================================== */
+
+const mainProductImage =
   document.querySelector("#main-product-image");
 
-const thumbnails =
+const mainProductVideo =
+  document.querySelector("#main-product-video");
+
+const mediaThumbnails =
   document.querySelectorAll(".thumbnail");
 
-const sizeButtons =
-  document.querySelectorAll("[data-size]");
+const videoThumbnailPreview =
+  document.querySelector(".video-thumbnail-preview");
 
-const colorButtons =
-  document.querySelectorAll("[data-color]");
 
-const selectedColorText =
-  document.querySelector("#selected-color");
+/* ==========================================
+   ELEMENTOS DEL ZOOM
+========================================== */
+
+const zoomButton =
+  document.querySelector("#zoom-button");
+
+const zoomModal =
+  document.querySelector("#zoom-modal");
+
+const zoomImage =
+  document.querySelector("#zoom-image");
+
+const zoomClose =
+  document.querySelector("#zoom-close");
+
+
+/* ==========================================
+   OTROS ELEMENTOS
+========================================== */
 
 const quantityText =
   document.querySelector("#quantity");
@@ -36,227 +61,643 @@ const faqQuestions =
   document.querySelectorAll(".faq-question");
 
 
-/* ===================================
-   ESTADO DEL PRODUCTO
-=================================== */
+/* ==========================================
+   DATOS DEL PRODUCTO
+========================================== */
 
-let selectedSize = null;
+const product = {
 
-let selectedColor = "Negro";
+  name:
+    "Caja Fuerte Digital de Acero Reforzado",
+
+  price:
+    129900
+
+};
+
+
+/* ==========================================
+   CANTIDAD INICIAL
+========================================== */
 
 let quantity = 1;
 
 
-/* ===================================
-   GALERÍA
-=================================== */
+/* ==========================================
+   PREVIEW DEL VIDEO EN MINIATURA
+========================================== */
 
-thumbnails.forEach((thumbnail) => {
+if (videoThumbnailPreview) {
 
-  thumbnail.addEventListener("click", () => {
+  videoThumbnailPreview.addEventListener(
+    "loadedmetadata",
+    () => {
 
-    const newImage =
-      thumbnail.dataset.image;
+      /*
+        Mostramos un frame del video
+        para evitar que la miniatura
+        aparezca completamente negra.
+      */
 
-    mainImage.style.opacity = "0";
+      if (
+        videoThumbnailPreview.duration > 1
+      ) {
+
+        videoThumbnailPreview.currentTime =
+          0.5;
+
+      }
+
+    }
+  );
+
+}
 
 
-    setTimeout(() => {
+/* ==========================================
+   GALERÍA DE PRODUCTO
+========================================== */
 
-      mainImage.src = newImage;
+mediaThumbnails.forEach((thumbnail) => {
 
-      mainImage.style.opacity = "1";
-
-    }, 150);
-
-
-    thumbnails.forEach((item) => {
-
-      item.classList.remove("active");
-
-    });
+  thumbnail.addEventListener(
+    "click",
+    () => {
 
 
-    thumbnail.classList.add("active");
+      const type =
+        thumbnail.dataset.type;
 
-  });
+
+      const media =
+        thumbnail.dataset.media;
+
+
+      /* ==================================
+         QUITAR SELECCIÓN ACTUAL
+      ================================== */
+
+      mediaThumbnails.forEach((item) => {
+
+        item.classList.remove("active");
+
+      });
+
+
+      /* ==================================
+         MARCAR MINIATURA SELECCIONADA
+      ================================== */
+
+      thumbnail.classList.add("active");
+
+
+      /* ==================================
+         MOSTRAR IMAGEN
+      ================================== */
+
+      if (type === "image") {
+
+
+        if (mainProductVideo) {
+
+          mainProductVideo.pause();
+
+          mainProductVideo.style.display =
+            "none";
+
+        }
+
+
+        if (mainProductImage) {
+
+          mainProductImage.style.display =
+            "block";
+
+
+          mainProductImage.style.opacity =
+            "0";
+
+
+          setTimeout(() => {
+
+            mainProductImage.src =
+              media;
+
+
+            mainProductImage.style.opacity =
+              "1";
+
+          }, 120);
+
+        }
+
+
+        /*
+          Volver a mostrar lupa
+          cuando seleccionamos imagen.
+        */
+
+        if (zoomButton) {
+
+          zoomButton.style.display =
+            "";
+
+        }
+
+      }
+
+
+      /* ==================================
+         MOSTRAR VIDEO
+      ================================== */
+
+      if (type === "video") {
+
+
+        if (mainProductImage) {
+
+          mainProductImage.style.display =
+            "none";
+
+        }
+
+
+        if (mainProductVideo) {
+
+          mainProductVideo.style.display =
+            "block";
+
+
+          const videoSource =
+            mainProductVideo.querySelector(
+              "source"
+            );
+
+
+          if (videoSource) {
+
+
+            if (
+              videoSource.getAttribute(
+                "src"
+              ) !== media
+            ) {
+
+              videoSource.src =
+                media;
+
+
+              mainProductVideo.load();
+
+            }
+
+          }
+
+
+          /*
+            Intentamos reproducir el video.
+            Si el navegador bloquea autoplay,
+            simplemente queda listo para Play.
+          */
+
+          mainProductVideo
+            .play()
+            .catch(() => {
+
+              console.log(
+                "Autoplay bloqueado por el navegador."
+              );
+
+            });
+
+        }
+
+
+        /*
+          Ocultar la lupa mientras
+          estamos viendo video.
+        */
+
+        if (zoomButton) {
+
+          zoomButton.style.display =
+            "none";
+
+        }
+
+      }
+
+
+    }
+  );
 
 });
 
 
-/* ===================================
-   TALLAS
-=================================== */
+/* ==========================================
+   AUMENTAR CANTIDAD
+========================================== */
 
-sizeButtons.forEach((button) => {
+if (
+  increaseQuantity &&
+  quantityText
+) {
 
-  button.addEventListener("click", () => {
-
-    selectedSize =
-      button.dataset.size;
-
-
-    sizeButtons.forEach((item) => {
-
-      item.classList.remove("selected");
-
-    });
+  increaseQuantity.addEventListener(
+    "click",
+    () => {
 
 
-    button.classList.add("selected");
-
-  });
-
-});
+      quantity++;
 
 
-/* ===================================
-   COLORES
-=================================== */
-
-colorButtons.forEach((button) => {
-
-  button.addEventListener("click", () => {
-
-    selectedColor =
-      button.dataset.color;
+      quantityText.textContent =
+        quantity;
 
 
-    selectedColorText.textContent =
-      selectedColor;
+    }
+  );
+
+}
 
 
-    colorButtons.forEach((item) => {
+/* ==========================================
+   DISMINUIR CANTIDAD
+========================================== */
 
-      item.classList.remove("active");
+if (
+  decreaseQuantity &&
+  quantityText
+) {
 
-    });
-
-
-    button.classList.add("active");
-
-  });
-
-});
-
-
-/* ===================================
-   CANTIDAD
-=================================== */
-
-increaseQuantity.addEventListener("click", () => {
-
-  quantity++;
-
-  quantityText.textContent =
-    quantity;
-
-});
+  decreaseQuantity.addEventListener(
+    "click",
+    () => {
 
 
-decreaseQuantity.addEventListener("click", () => {
-
-  if (quantity > 1) {
-
-    quantity--;
-
-    quantityText.textContent =
-      quantity;
-
-  }
-
-});
+      if (quantity > 1) {
 
 
-/* ===================================
+        quantity--;
+
+
+        quantityText.textContent =
+          quantity;
+
+
+      }
+
+
+    }
+  );
+
+}
+
+
+/* ==========================================
    FAQ
-=================================== */
+========================================== */
 
 faqQuestions.forEach((question) => {
 
-  question.addEventListener("click", () => {
-
-    const answer =
-      question.nextElementSibling;
-
-    const icon =
-      question.querySelector(".faq-icon");
-
-    const isOpen =
-      question.classList.contains("active");
+  question.addEventListener(
+    "click",
+    () => {
 
 
-    faqQuestions.forEach((item) => {
-
-      item.classList.remove("active");
-
-      item.querySelector(".faq-icon")
-        .textContent = "+";
-
-      item.nextElementSibling
-        .style.maxHeight = null;
-
-    });
+      const answer =
+        question.nextElementSibling;
 
 
-    if (!isOpen) {
+      const icon =
+        question.querySelector(
+          ".faq-icon"
+        );
 
-      question.classList.add("active");
 
-      icon.textContent = "−";
+      const isOpen =
+        question.classList.contains(
+          "active"
+        );
 
-      answer.style.maxHeight =
-        answer.scrollHeight + "px";
+
+      /* ==================================
+         CERRAR TODOS
+      ================================== */
+
+      faqQuestions.forEach((item) => {
+
+
+        item.classList.remove(
+          "active"
+        );
+
+
+        const itemIcon =
+          item.querySelector(
+            ".faq-icon"
+          );
+
+
+        const itemAnswer =
+          item.nextElementSibling;
+
+
+        if (itemIcon) {
+
+          itemIcon.textContent =
+            "+";
+
+        }
+
+
+        if (itemAnswer) {
+
+          itemAnswer.style.maxHeight =
+            null;
+
+        }
+
+
+      });
+
+
+      /* ==================================
+         ABRIR FAQ SELECCIONADO
+      ================================== */
+
+      if (!isOpen) {
+
+
+        question.classList.add(
+          "active"
+        );
+
+
+        if (icon) {
+
+          icon.textContent =
+            "−";
+
+        }
+
+
+        if (answer) {
+
+          answer.style.maxHeight =
+            answer.scrollHeight +
+            "px";
+
+        }
+
+
+      }
+
 
     }
-
-  });
+  );
 
 });
 
 
-/* ===================================
-   FUNCIÓN DE COMPRA
-=================================== */
+/* ==========================================
+   ABRIR ZOOM
+========================================== */
 
-function buyProduct() {
+if (
+  zoomButton &&
+  zoomModal &&
+  zoomImage &&
+  mainProductImage
+) {
 
-  if (!selectedSize) {
-
-    alert(
-      "Por favor selecciona una talla antes de continuar."
-    );
-
-    const sizeSection =
-      document.querySelector(".size-options");
+  zoomButton.addEventListener(
+    "click",
+    () => {
 
 
-    sizeSection.scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
+      zoomImage.src =
+        mainProductImage.src;
+
+
+      zoomImage.classList.remove(
+        "zoomed"
+      );
+
+
+      zoomModal.classList.add(
+        "active"
+      );
+
+
+      zoomModal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+
+      /*
+        Evita que la landing se mueva
+        mientras el zoom está abierto.
+      */
+
+      document.body.style.overflow =
+        "hidden";
+
+
+    }
+  );
+
+}
+
+
+/* ==========================================
+   ZOOM DENTRO DE LA IMAGEN
+========================================== */
+
+if (zoomImage) {
+
+  zoomImage.addEventListener(
+    "click",
+    () => {
+
+
+      zoomImage.classList.toggle(
+        "zoomed"
+      );
+
+
+    }
+  );
+
+}
+
+
+/* ==========================================
+   FUNCIÓN CERRAR ZOOM
+========================================== */
+
+function closeZoom() {
+
+
+  if (!zoomModal) {
 
     return;
 
   }
 
 
+  zoomModal.classList.remove(
+    "active"
+  );
+
+
+  zoomModal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+
+  if (zoomImage) {
+
+    zoomImage.classList.remove(
+      "zoomed"
+    );
+
+  }
+
+
+  document.body.style.overflow =
+    "";
+
+
+}
+
+
+/* ==========================================
+   BOTÓN X DEL ZOOM
+========================================== */
+
+if (zoomClose) {
+
+  zoomClose.addEventListener(
+    "click",
+    closeZoom
+  );
+
+}
+
+
+/* ==========================================
+   CERRAR ZOOM AL HACER CLIC EN EL FONDO
+========================================== */
+
+if (zoomModal) {
+
+  zoomModal.addEventListener(
+    "click",
+    (event) => {
+
+
+      if (
+        event.target === zoomModal
+      ) {
+
+        closeZoom();
+
+      }
+
+
+    }
+  );
+
+}
+
+
+/* ==========================================
+   CERRAR ZOOM CON ESC
+========================================== */
+
+document.addEventListener(
+  "keydown",
+  (event) => {
+
+
+    if (
+      event.key === "Escape" &&
+      zoomModal &&
+      zoomModal.classList.contains(
+        "active"
+      )
+    ) {
+
+      closeZoom();
+
+    }
+
+
+  }
+);
+
+
+/* ==========================================
+   FORMATEAR PRECIO
+========================================== */
+
+function formatPrice(value) {
+
+
+  return new Intl.NumberFormat(
+    "es-CO",
+    {
+
+      style:
+        "currency",
+
+      currency:
+        "COP",
+
+      maximumFractionDigits:
+        0
+
+    }
+
+  ).format(value);
+
+
+}
+
+
+/* ==========================================
+   FUNCIÓN COMPRAR
+========================================== */
+
+function buyProduct() {
+
+
+  const total =
+    product.price *
+    quantity;
+
+
   const productData = {
 
+
     producto:
-      "Nombre del producto",
+      product.name,
 
-    precio:
-      129900,
 
-    talla:
-      selectedSize,
+    precioUnitario:
+      product.price,
 
-    color:
-      selectedColor,
 
     cantidad:
-      quantity
+      quantity,
+
+
+    total:
+      total
+
 
   };
 
@@ -268,67 +709,70 @@ function buyProduct() {
 
 
   /*
-  =====================================
+  =========================================
 
-  MÁS ADELANTE AQUÍ VAMOS A CONECTAR:
+  MÁS ADELANTE AQUÍ CONECTAREMOS
+  MERCADO PAGO.
 
-  MERCADO PAGO
+  Vamos a enviar:
 
-  Y ENVIAREMOS:
-
-  - Producto
+  - Nombre del producto
   - Precio
-  - Color
-  - Talla
   - Cantidad
+  - Total
 
-  =====================================
+  =========================================
   */
 
 
   alert(
     `Producto listo para comprar.
 
-Talla: ${selectedSize}
-Color: ${selectedColor}
+${product.name}
+
 Cantidad: ${quantity}
 
+Total: ${formatPrice(total)}
+
 Próximamente conectaremos Mercado Pago.`
+  );
+
+
+}
+
+
+/* ==========================================
+   BOTÓN COMPRAR PRINCIPAL
+========================================== */
+
+if (buyButton) {
+
+  buyButton.addEventListener(
+    "click",
+    buyProduct
   );
 
 }
 
 
-/* BOTÓN DESKTOP */
+/* ==========================================
+   BOTÓN COMPRAR MOBILE
+========================================== */
 
-buyButton.addEventListener(
-  "click",
-  buyProduct
-);
+if (mobileBuyButton) {
 
+  mobileBuyButton.addEventListener(
+    "click",
+    buyProduct
+  );
 
-/* BOTÓN MOBILE */
-
-mobileBuyButton.addEventListener(
-  "click",
-  () => {
-
-    const productSection =
-      document.querySelector("#producto");
+}
 
 
-    productSection.scrollIntoView({
-      behavior: "smooth"
-    });
-
-  }
-);
-
-
-/* ===================================
-   MENSAJE DE PRUEBA
-=================================== */
+/* ==========================================
+   MENSAJE CONSOLA
+========================================== */
 
 console.log(
-  "Landing cargada correctamente ✅"
+  "Landing RS Imports cargada correctamente"
 );
