@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -8,814 +10,1260 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>Producto Premium</title>
+  <title>Caja Fuerte Digital | RS Imports</title>
 
   <meta
     name="description"
-    content="Landing page de producto."
+    content="Caja fuerte digital de acero reforzado para hogar, oficina o negocio."
   >
 
-  <link rel="stylesheet" href="./css/styles.css">
+  <link
+    rel="stylesheet"
+    href="./css/styles.css"
+  >
+
 </head>
+
 
 <body>
 
-  <!-- BARRA SUPERIOR -->
+
+  <!-- =========================================
+       BARRA SUPERIOR
+  ========================================== -->
 
   <div class="announcement-bar">
+
     ENVÍOS A TODA COLOMBIA
+
   </div>
 
 
-  <!-- HEADER -->
+
+  <!-- =========================================
+       HEADER
+  ========================================== -->
 
   <header class="header">
+
     <div class="container header-content">
 
-      <a href="#" class="logo">
-        MARCA
+
+      <a
+        href="#"
+        class="logo"
+      >
+
+        <img
+          src="./assets/logo-rs-imports.png.png"
+          alt="RS Imports"
+          class="logo-image"
+        >
+
       </a>
 
-      <a href="#producto" class="header-button">
+
+      <a
+        href="#producto"
+        class="header-button"
+      >
+
         COMPRAR
+
       </a>
+
 
     </div>
+
   </header>
+
 
 
   <main>
 
-    <!-- PRODUCTO -->
 
-    <section class="product-section" id="producto">
+    <!-- =========================================
+         PRODUCTO
+    ========================================== -->
+
+    <section
+      class="product-section"
+      id="producto"
+    >
+
 
       <div class="container product-grid">
 
-        <!-- GALERÍA -->
 
-        <div class="product-gallery">
+        <!-- =====================================
+     GALERÍA
+====================================== -->
 
-          <div class="main-image-wrapper">
-
-            <img
-              id="main-product-image"
-              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=85"
-              alt="Producto"
-              class="main-product-image"
-            >
-
-          </div>
+<div class="product-gallery">
 
 
-          <div class="product-thumbnails">
+  <!-- IMAGEN / VIDEO PRINCIPAL -->
 
-            <button
-              class="thumbnail active"
-              data-image="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=85"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80"
-                alt="Vista producto 1"
-              >
-            </button>
+  <div class="main-media-wrapper">
 
 
-            <button
-              class="thumbnail"
-              data-image="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=85"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80"
-                alt="Vista producto 2"
-              >
-            </button>
+    <img
+      id="main-product-image"
+      src="./assets/imagen caja fuerte 01. jpg.jpeg"
+      alt="Caja Fuerte Digital RS Imports"
+      class="main-product-image"
+    >
 
 
-            <button
-              class="thumbnail"
-              data-image="https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=1200&q=85"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=400&q=80"
-                alt="Vista producto 3"
-              >
-            </button>
+    <video
+      id="main-product-video"
+      class="main-product-video"
+      controls
+      playsinline
+      preload="metadata"
+    >
 
-          </div>
+      <source
+        src="./assets/video caja fuerte 01 . mp4.mp4"
+        type="video/mp4"
+      >
 
-        </div>
+    </video>
 
 
-        <!-- INFORMACIÓN DEL PRODUCTO -->
+    <!-- BOTÓN ZOOM - SOLO DESKTOP -->
+
+    <button
+      id="zoom-button"
+      class="zoom-button"
+      type="button"
+      aria-label="Ampliar imagen"
+    >
+
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <circle
+          cx="11"
+          cy="11"
+          r="7"
+        ></circle>
+
+        <line
+          x1="16.5"
+          y1="16.5"
+          x2="21"
+          y2="21"
+        ></line>
+
+        <line
+          x1="11"
+          y1="8"
+          x2="11"
+          y2="14"
+        ></line>
+
+        <line
+          x1="8"
+          y1="11"
+          x2="14"
+          y2="11"
+        ></line>
+
+      </svg>
+
+    </button>
+
+
+  </div>
+
+
+
+  <!-- MINIATURAS -->
+
+  <div class="product-thumbnails">
+
+
+    <!-- FOTO 1 -->
+
+    <button
+      class="thumbnail active"
+      data-type="image"
+      data-media="./assets/imagen caja fuerte 01. jpg.jpeg"
+      type="button"
+    >
+
+      <img
+        src="./assets/imagen caja fuerte 01. jpg.jpeg"
+        alt="Caja fuerte vista 1"
+      >
+
+    </button>
+
+
+
+    <!-- FOTO 2 -->
+
+    <button
+      class="thumbnail"
+      data-type="image"
+      data-media="./assets/imagen caja fuerte 03 . jpg.jpeg"
+      type="button"
+    >
+
+      <img
+        src="./assets/imagen caja fuerte 03 . jpg.jpeg"
+        alt="Caja fuerte vista 2"
+      >
+
+    </button>
+
+
+
+    <!-- FOTO 3 -->
+
+    <button
+      class="thumbnail"
+      data-type="image"
+      data-media="./assets/imagen caja fuerte 06 . jpg.jpeg"
+      type="button"
+    >
+
+      <img
+        src="./assets/imagen caja fuerte 06 . jpg.jpeg"
+        alt="Caja fuerte vista 3"
+      >
+
+    </button>
+
+
+
+    <!-- FOTO 4 -->
+
+    <button
+      class="thumbnail"
+      data-type="image"
+      data-media="./assets/imagen caja fuerte 05 . jpg.jpeg"
+      type="button"
+    >
+
+      <img
+        src="./assets/imagen caja fuerte 05 . jpg.jpeg"
+        alt="Caja fuerte vista 4"
+      >
+
+    </button>
+
+
+
+    <!-- VIDEO -->
+
+    <button
+      class="thumbnail video-thumbnail"
+      data-type="video"
+      data-media="./assets/video caja fuerte 01 . mp4.mp4"
+      type="button"
+      aria-label="Ver video del producto"
+    >
+
+      <video
+        class="video-thumbnail-preview"
+        muted
+        playsinline
+        preload="metadata"
+      >
+
+        <source
+          src="./assets/video caja fuerte 01 . mp4.mp4"
+          type="video/mp4"
+        >
+
+      </video>
+
+
+      <div class="video-thumbnail-overlay">
+
+        <span class="video-play-icon">
+          ▶
+        </span>
+
+      </div>
+
+    </button>
+
+
+  </div>
+
+
+</div>
+
+
+
+<!-- =====================================
+     MODAL ZOOM
+====================================== -->
+
+<div
+  id="zoom-modal"
+  class="zoom-modal"
+  aria-hidden="true"
+>
+
+  <button
+    id="zoom-close"
+    class="zoom-close"
+    type="button"
+    aria-label="Cerrar imagen"
+  >
+    ×
+  </button>
+
+
+  <div class="zoom-image-container">
+
+    <img
+      id="zoom-image"
+      src=""
+      alt="Caja fuerte ampliada"
+      class="zoom-image"
+    >
+
+  </div>
+
+
+  <div class="zoom-help">
+    Clic sobre la imagen para ampliar
+  </div>
+
+</div>
+
+
+
+        <!-- =====================================
+             INFORMACIÓN DEL PRODUCTO
+        ====================================== -->
 
         <div class="product-info">
 
+
           <span class="product-tag">
+
             NUEVO
+
           </span>
 
+
+
           <h1>
-            Nombre del producto
+
+            CAJA FUERTE DIGITAL
+
           </h1>
 
+
+
+          <!-- REVIEWS -->
 
           <div class="rating">
 
             <span>
+
               ★★★★★
+
             </span>
 
             <small>
+
               4.9 · 120 reseñas
+
             </small>
 
           </div>
 
 
+
+          <!-- PRECIO -->
+
           <div class="product-price">
 
+
             <span class="current-price">
+
               $129.900
+
             </span>
 
+
             <span class="old-price">
-              $159.900
+
+              $180.000
+
             </span>
+
 
           </div>
 
 
+
+          <!-- CANTIDAD -->
+
+          <div class="product-option quantity-product-option">
+
+
+            <div class="option-title">
+
+              CANTIDAD
+
+            </div>
+
+
+            <div class="quantity-selector">
+
+
+              <button
+                id="decrease-quantity"
+                type="button"
+                aria-label="Disminuir cantidad"
+              >
+
+                −
+
+              </button>
+
+
+              <span id="quantity">
+
+                1
+
+              </span>
+
+
+              <button
+                id="increase-quantity"
+                type="button"
+                aria-label="Aumentar cantidad"
+              >
+
+                +
+
+              </button>
+
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- BOTÓN DE COMPRA -->
+
+          <button
+            class="buy-button"
+            id="buy-button"
+            type="button"
+          >
+
+            COMPRAR AHORA
+
+          </button>
+
+
+
+          <!-- DESCRIPCIÓN -->
+
           <p class="product-description">
-            Una descripción corta y clara del producto.
-            Aquí explicaremos después qué es, para qué
-            sirve y por qué el cliente debería comprarlo.
+
+            <strong>
+              Caja Fuerte Digital de Acero Reforzado.
+            </strong>
+
+            Protege tu dinero, documentos, joyas y objetos
+            de valor con una caja fuerte compacta y resistente,
+            ideal para el hogar, oficina o negocio.
+
+            Cuenta con código digital programable,
+            2 llaves de emergencia, bloqueo tras intentos
+            fallidos y 2 pernos de anclaje para una
+            instalación más segura.
+
           </p>
+
 
 
           <!-- BENEFICIOS RÁPIDOS -->
 
           <div class="quick-benefits">
 
-            <div>
-              ✓ Producto de alta calidad
-            </div>
 
             <div>
-              ✓ Diseño funcional
+              ✓ Acero templado y puerta reforzada
             </div>
+
 
             <div>
-              ✓ Envíos a toda Colombia
+              ✓ Código digital programable
             </div>
+
+
+            <div>
+              ✓ Incluye 2 llaves de emergencia
+            </div>
+
+
+            <div>
+              ✓ Bloqueo tras 3 intentos fallidos
+            </div>
+
+
+            <div>
+              ✓ Diseño compacto de 23 × 17 × 17 cm
+            </div>
+
+
+            <div>
+              ✓ Incluye 2 pernos de anclaje
+            </div>
+
+
+            <div>
+              ✓ Ideal para hogar, oficina, negocio u hotel
+            </div>
+
+
+            <div>
+              ✓ Ayuda a proteger contra la humedad
+            </div>
+
 
           </div>
 
 
-          <!-- COLOR -->
 
-          <div class="product-option">
-
-            <div class="option-title">
-              COLOR:
-              <strong id="selected-color">
-                Negro
-              </strong>
-            </div>
-
-
-            <div class="color-options">
-
-              <button
-                class="color-option color-black active"
-                data-color="Negro"
-                aria-label="Negro"
-              ></button>
-
-              <button
-                class="color-option color-gray"
-                data-color="Gris"
-                aria-label="Gris"
-              ></button>
-
-              <button
-                class="color-option color-white"
-                data-color="Blanco"
-                aria-label="Blanco"
-              ></button>
-
-            </div>
-
-          </div>
-
-
-          <!-- TALLAS -->
-
-          <div class="product-option">
-
-            <div class="option-title">
-              SELECCIONA TU TALLA
-            </div>
-
-
-            <div class="size-options">
-
-              <button data-size="S">
-                S
-              </button>
-
-              <button data-size="M">
-                M
-              </button>
-
-              <button data-size="L">
-                L
-              </button>
-
-              <button data-size="XL">
-                XL
-              </button>
-
-            </div>
-
-          </div>
-
-
-          <!-- CANTIDAD -->
-
-          <div class="product-option">
-
-            <div class="option-title">
-              CANTIDAD
-            </div>
-
-
-            <div class="quantity-selector">
-
-              <button
-                id="decrease-quantity"
-                type="button"
-              >
-                −
-              </button>
-
-              <span id="quantity">
-                1
-              </span>
-
-              <button
-                id="increase-quantity"
-                type="button"
-              >
-                +
-              </button>
-
-            </div>
-
-          </div>
-
-
-          <!-- BOTÓN COMPRA -->
-
-          <button
-            class="buy-button"
-            id="buy-button"
-          >
-            COMPRAR AHORA
-          </button>
-
+          <!-- INFORMACIÓN DE COMPRA -->
 
           <div class="payment-info">
+
 
             <div>
               🔒 Pago seguro
             </div>
 
+
             <div>
               📦 Envíos nacionales
             </div>
+
 
             <div>
               ✓ Compra protegida
             </div>
 
+
           </div>
+
 
         </div>
 
+
       </div>
+
 
     </section>
 
 
-    <!-- BENEFICIOS -->
+
+    <!-- =========================================
+         BENEFICIOS
+    ========================================== -->
 
     <section class="section benefits-section">
 
+
       <div class="container">
 
+
         <div class="section-heading">
+
 
           <span>
             BENEFICIOS
           </span>
 
+
           <h2>
-            Diseñado para darte más.
+            Diseñado para proteger lo que más importa.
           </h2>
 
+
           <p>
-            Esta sección la utilizaremos después para
-            presentar los principales beneficios reales
-            del producto.
+            Seguridad práctica para guardar dinero,
+            documentos y objetos de valor en casa,
+            oficina o negocio.
           </p>
+
 
         </div>
 
 
+
         <div class="benefits-grid">
 
+
           <article class="benefit-card">
+
 
             <div class="benefit-number">
               01
             </div>
 
+
             <h3>
-              Beneficio principal
+              Seguridad digital
             </h3>
 
+
             <p>
-              Explicación corta del principal beneficio
-              que obtiene el cliente.
+              Configura tu propio código de acceso
+              para abrir la caja de forma rápida
+              y segura.
             </p>
+
 
           </article>
 
 
+
           <article class="benefit-card">
+
 
             <div class="benefit-number">
               02
             </div>
 
+
             <h3>
-              Mayor comodidad
+              Acceso de emergencia
             </h3>
 
+
             <p>
-              Podemos utilizar este espacio para destacar
-              una segunda ventaja.
+              Incluye dos llaves de emergencia
+              para acceder a la caja cuando sea
+              necesario.
             </p>
+
 
           </article>
 
 
+
           <article class="benefit-card">
+
 
             <div class="benefit-number">
               03
             </div>
 
+
             <h3>
-              Alta calidad
+              Instalación segura
             </h3>
 
+
             <p>
-              Materiales, durabilidad, construcción o
-              cualquier característica diferencial.
+              Incluye pernos de anclaje para fijarla
+              de manera más segura.
             </p>
+
 
           </article>
 
+
         </div>
 
+
       </div>
+
 
     </section>
 
 
-    <!-- BANNER -->
+
+    <!-- =========================================
+         BANNER
+    ========================================== -->
 
     <section class="banner-section">
 
+
       <div class="banner-overlay"></div>
+
 
       <div class="container banner-content">
 
+
         <span>
-          PRODUCTO PREMIUM
+          SEGURIDAD PARA TU ESPACIO
         </span>
 
+
         <h2>
-          Creado para acompañarte todos los días.
+          Protege tus objetos de valor.
         </h2>
 
+
         <p>
-          Aquí podremos colocar una fotografía lifestyle,
-          video o banner principal del producto.
+          Una solución compacta para mantener
+          protegidos documentos, dinero, joyas
+          y objetos importantes.
         </p>
+
 
         <a href="#producto">
           COMPRAR AHORA
         </a>
 
+
       </div>
+
 
     </section>
 
 
-    <!-- CARACTERÍSTICAS -->
+
+    <!-- =========================================
+         CARACTERÍSTICAS
+    ========================================== -->
 
     <section class="section features-section">
 
+
       <div class="container features-grid">
 
+
         <div class="features-title">
+
 
           <span>
             CARACTERÍSTICAS
           </span>
 
+
           <h2>
             Todo lo que necesitas saber.
           </h2>
 
+
         </div>
+
 
 
         <div class="features-list">
 
+
           <div class="feature">
+
 
             <span>
               01
             </span>
 
+
             <div>
 
+
               <h3>
-                Material premium
+                Acero reforzado
               </h3>
 
+
               <p>
-                Aquí irá la información relacionada
-                con los materiales del producto.
+                Construcción resistente pensada
+                para proteger tus objetos de valor.
               </p>
 
+
             </div>
+
 
           </div>
 
 
+
           <div class="feature">
+
 
             <span>
               02
             </span>
 
+
             <div>
 
+
               <h3>
-                Diseño funcional
+                Código digital
               </h3>
 
+
               <p>
-                Una característica importante que
-                diferencia el producto.
+                Sistema electrónico con código
+                programable para controlar el acceso.
               </p>
 
+
             </div>
+
 
           </div>
 
 
+
           <div class="feature">
+
 
             <span>
               03
             </span>
 
+
             <div>
 
+
               <h3>
-                Construcción resistente
+                Llaves de emergencia
               </h3>
 
+
               <p>
-                Información sobre resistencia,
-                durabilidad o fabricación.
+                Incluye dos llaves para apertura
+                alternativa.
               </p>
 
+
             </div>
+
 
           </div>
 
 
+
           <div class="feature">
+
 
             <span>
               04
             </span>
 
+
             <div>
 
+
               <h3>
-                Fácil de utilizar
+                Pernos de anclaje
               </h3>
 
+
               <p>
-                Explicación sencilla enfocada en
-                la experiencia del cliente.
+                Incluye dos pernos para realizar
+                una instalación más segura.
               </p>
+
 
             </div>
 
+
           </div>
+
 
         </div>
 
+
       </div>
+
 
     </section>
 
 
-    <!-- TESTIMONIOS -->
+
+    <!-- =========================================
+         TESTIMONIOS
+    ========================================== -->
 
     <section class="section reviews-section">
 
+
       <div class="container">
 
+
         <div class="section-heading review-heading">
+
 
           <span>
             RESEÑAS
           </span>
 
+
           <h2>
-            Clientes que ya lo probaron.
+            Clientes que ya la probaron.
           </h2>
+
 
         </div>
 
 
+
         <div class="reviews-grid">
 
+
           <article class="review-card">
+
 
             <div class="stars">
               ★★★★★
             </div>
+
 
             <p>
               “Excelente producto. Se nota la calidad
               desde el primer momento.”
             </p>
 
+
             <strong>
               CLIENTE VERIFICADO
             </strong>
 
+
           </article>
+
 
 
           <article class="review-card">
 
+
             <div class="stars">
               ★★★★★
             </div>
+
 
             <p>
               “Llegó rápido y el producto fue exactamente
               lo que esperaba.”
             </p>
 
+
             <strong>
               CLIENTE VERIFICADO
             </strong>
 
+
           </article>
+
 
 
           <article class="review-card">
 
+
             <div class="stars">
               ★★★★★
             </div>
+
 
             <p>
               “Muy buena calidad. Definitivamente
               volvería a comprar.”
             </p>
 
+
             <strong>
               CLIENTE VERIFICADO
             </strong>
 
+
           </article>
+
 
         </div>
 
+
       </div>
+
 
     </section>
 
 
-    <!-- FAQ -->
+
+    <!-- =========================================
+         FAQ
+    ========================================== -->
 
     <section class="section faq-section">
 
+
       <div class="container faq-container">
 
+
         <div class="section-heading">
+
 
           <span>
             PREGUNTAS FRECUENTES
           </span>
 
+
           <h2>
             ¿Tienes preguntas?
           </h2>
 
+
         </div>
+
 
 
         <div class="faq-list">
 
+
           <div class="faq-item">
 
+
             <button class="faq-question">
+
 
               <span class="faq-title">
                 ¿Cuánto tarda el envío?
               </span>
 
+
               <span class="faq-icon">
                 +
               </span>
+
 
             </button>
 
 
             <div class="faq-answer">
 
+
               <p>
-                Los tiempos de entrega dependerán de la
-                ciudad. Más adelante agregaremos las
-                condiciones reales del cliente.
+                Los tiempos de entrega dependerán
+                de la ciudad.
               </p>
 
+
             </div>
+
 
           </div>
 
 
+
           <div class="faq-item">
 
+
             <button class="faq-question">
+
 
               <span class="faq-title">
                 ¿Qué métodos de pago aceptan?
               </span>
 
+
               <span class="faq-icon">
                 +
               </span>
+
 
             </button>
 
 
             <div class="faq-answer">
 
+
               <p>
-                Posteriormente conectaremos la página
+                Próximamente conectaremos esta página
                 con Mercado Pago para recibir pagos
                 online.
               </p>
 
+
             </div>
+
 
           </div>
 
 
+
           <div class="faq-item">
+
 
             <button class="faq-question">
 
+
               <span class="faq-title">
-                ¿Puedo realizar cambios?
+                ¿Incluye llaves de emergencia?
               </span>
+
 
               <span class="faq-icon">
                 +
               </span>
+
 
             </button>
 
 
             <div class="faq-answer">
 
+
               <p>
-                Aquí colocaremos las políticas de
-                cambios y garantías del cliente.
+                Sí. La caja fuerte incluye
+                2 llaves de emergencia.
               </p>
+
 
             </div>
 
+
           </div>
+
 
         </div>
 
+
       </div>
+
 
     </section>
 
 
-    <!-- CTA FINAL -->
+
+    <!-- =========================================
+         CTA FINAL
+    ========================================== -->
 
     <section class="final-cta">
 
+
       <div class="container">
 
+
         <span>
-          NO TE QUEDES SIN EL TUYO
+          PROTEGE LO QUE MÁS IMPORTA
         </span>
 
+
         <h2>
-          ¿Listo para comprar?
+          ¿Listo para pedir la tuya?
         </h2>
+
 
         <a href="#producto">
           VER PRODUCTO
         </a>
 
+
       </div>
 
+
     </section>
+
 
   </main>
 
 
-  <!-- FOOTER -->
+
+  <!-- =========================================
+       FOOTER
+  ========================================== -->
 
   <footer class="footer">
 
+
     <div class="container footer-content">
 
+
       <strong>
-        MARCA
+        RS IMPORTS
       </strong>
 
+
+
       <div class="footer-links">
+
 
         <a href="#">
           Envíos
         </a>
 
+
         <a href="#">
           Cambios
         </a>
+
 
         <a href="#">
           Privacidad
         </a>
 
+
       </div>
 
+
+
       <p>
-        © 2026 Todos los derechos reservados.
+        © 2026 RS Imports. Todos los derechos reservados.
       </p>
 
+
     </div>
+
 
   </footer>
 
 
-  <!-- BOTÓN FIJO MOBILE -->
+
+  <!-- =========================================
+       BOTÓN FIJO MOBILE
+  ========================================== -->
 
   <div class="mobile-buy-bar">
 
+
     <div class="mobile-price">
+
 
       <small>
         PRECIO
       </small>
 
+
       <strong>
         $129.900
       </strong>
 
+
     </div>
 
 
+
     <button id="mobile-buy-button">
+
       COMPRAR AHORA
+
     </button>
+
 
   </div>
 
 
+
   <script src="./js/app.js"></script>
 
+
 </body>
+
 </html>
