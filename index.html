@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="es">
 
 <head>
@@ -10,12 +11,14 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>Caja Fuerte Digital | RS Imports</title>
-
   <meta
     name="description"
-    content="Caja fuerte digital de acero reforzado para hogar, oficina o negocio."
+    content="Caja Fuerte Digital de Acero Reforzado. Protege dinero, documentos y objetos de valor. Pide ahora y paga contra entrega."
   >
+
+  <title>
+    Caja Fuerte Digital | RS Imports
+  </title>
 
   <link
     rel="stylesheet"
@@ -29,11 +32,13 @@
 
 
   <!-- =========================================
-       BARRA SUPERIOR
+       ANNOUNCEMENT BAR
   ========================================== -->
 
   <div class="announcement-bar">
-    ENVÍO GRATIS A TODA COLOMBIA
+
+    ENVÍO GRATIS A TODA COLOMBIA · PAGA CONTRA ENTREGA
+
   </div>
 
 
@@ -46,7 +51,12 @@
 
     <div class="container header-content">
 
-      <a href="#" class="logo">
+
+      <a
+        href="#inicio"
+        class="logo"
+        aria-label="RS Imports"
+      >
 
         <img
           src="./assets/logo-rs-imports.png.png"
@@ -57,12 +67,16 @@
       </a>
 
 
-      <a
-        href="#producto"
+      <button
+        id="header-cod-button"
         class="header-button"
+        type="button"
       >
-        COMPRAR
-      </a>
+
+        PEDIR Y PAGAR CONTRA ENTREGA
+
+      </button>
+
 
     </div>
 
@@ -70,17 +84,18 @@
 
 
 
+  <!-- =========================================
+       PRODUCTO
+  ========================================== -->
+
   <main>
 
 
-    <!-- =========================================
-         PRODUCTO
-    ========================================== -->
-
     <section
+      id="inicio"
       class="product-section"
-      id="producto"
     >
+
 
       <div class="container product-grid">
 
@@ -92,18 +107,21 @@
         <div class="product-gallery">
 
 
-          <!-- IMAGEN / VIDEO PRINCIPAL -->
-
           <div class="main-media-wrapper">
 
 
+            <!-- FOTO PRINCIPAL -->
+
             <img
               id="main-product-image"
-              src="./assets/imagen caja fuerte 01. jpg.jpeg"
-              alt="Caja Fuerte Digital RS Imports"
               class="main-product-image"
+              src="./assets/imagen caja fuerte 01. jpg.jpeg"
+              alt="Caja Fuerte Digital de Acero Reforzado"
             >
 
+
+
+            <!-- VIDEO PRINCIPAL -->
 
             <video
               id="main-product-video"
@@ -118,10 +136,31 @@
                 type="video/mp4"
               >
 
+              Tu navegador no soporta video.
+
             </video>
 
 
-            <!-- LUPA -->
+
+            <!-- =================================
+                 BOTÓN SOBRE FOTO
+            ================================== -->
+
+            <button
+              id="gallery-cod-button"
+              class="gallery-cod-button"
+              type="button"
+            >
+
+              PEDIR Y PAGAR CONTRA ENTREGA
+
+            </button>
+
+
+
+            <!-- =================================
+                 ZOOM
+            ================================== -->
 
             <button
               id="zoom-button"
@@ -142,10 +181,10 @@
                 ></circle>
 
                 <line
-                  x1="16.5"
-                  y1="16.5"
-                  x2="21"
-                  y2="21"
+                  x1="20"
+                  y1="20"
+                  x2="16.65"
+                  y2="16.65"
                 ></line>
 
                 <line
@@ -171,7 +210,9 @@
 
 
 
-          <!-- MINIATURAS -->
+          <!-- =====================================
+               MINIATURAS
+          ====================================== -->
 
           <div class="product-thumbnails">
 
@@ -180,9 +221,10 @@
 
             <button
               class="thumbnail active"
+              type="button"
               data-type="image"
               data-media="./assets/imagen caja fuerte 01. jpg.jpeg"
-              type="button"
+              aria-label="Ver imagen 1"
             >
 
               <img
@@ -198,9 +240,10 @@
 
             <button
               class="thumbnail"
+              type="button"
               data-type="image"
               data-media="./assets/imagen caja fuerte 03 . jpg.jpeg"
-              type="button"
+              aria-label="Ver imagen 2"
             >
 
               <img
@@ -216,9 +259,10 @@
 
             <button
               class="thumbnail"
+              type="button"
               data-type="image"
               data-media="./assets/imagen caja fuerte 06 . jpg.jpeg"
-              type="button"
+              aria-label="Ver imagen 3"
             >
 
               <img
@@ -234,9 +278,10 @@
 
             <button
               class="thumbnail"
+              type="button"
               data-type="image"
               data-media="./assets/imagen caja fuerte 05 . jpg.jpeg"
-              type="button"
+              aria-label="Ver imagen 4"
             >
 
               <img
@@ -252,11 +297,12 @@
 
             <button
               class="thumbnail video-thumbnail"
+              type="button"
               data-type="video"
               data-media="./assets/video caja fuerte 01 . mp4.mp4"
-              type="button"
               aria-label="Ver video"
             >
+
 
               <video
                 class="video-thumbnail-preview"
@@ -273,18 +319,22 @@
               </video>
 
 
-              <div class="video-thumbnail-overlay">
+              <span class="video-thumbnail-overlay">
 
                 <span class="video-play-icon">
+
                   ▶
+
                 </span>
 
-              </div>
+              </span>
+
 
             </button>
 
 
           </div>
+
 
         </div>
 
@@ -298,28 +348,40 @@
 
 
           <span class="product-tag">
+
             NUEVO
+
           </span>
 
 
           <h1>
-            CAJA FUERTE DIGITAL
+
+            CAJA FUERTE
+            <br>
+            DIGITAL
+
           </h1>
 
 
-          <!-- REVIEWS -->
+
+          <!-- RATING -->
 
           <div class="rating">
 
-            <span>
+            <span class="stars">
+
               ★★★★★
+
             </span>
 
             <small>
+
               4.9 · 120 reseñas
+
             </small>
 
           </div>
+
 
 
           <!-- PRECIO -->
@@ -327,78 +389,106 @@
           <div class="product-price">
 
             <span class="current-price">
+
               $129.900
+
             </span>
 
             <span class="old-price">
+
               $180.000
+
             </span>
 
           </div>
 
 
-          <!-- CANTIDAD -->
 
-          <div class="product-option quantity-product-option">
+          <!-- =====================================
+               CANTIDAD
+          ====================================== -->
 
-            <div class="option-title">
+          <div class="product-option">
+
+
+            <p class="option-title">
+
               CANTIDAD
-            </div>
+
+            </p>
 
 
             <div class="quantity-selector">
 
+
               <button
                 id="decrease-quantity"
                 type="button"
+                aria-label="Disminuir cantidad"
               >
+
                 −
+
               </button>
 
+
               <span id="quantity">
+
                 1
+
               </span>
+
 
               <button
                 id="increase-quantity"
                 type="button"
+                aria-label="Aumentar cantidad"
               >
+
                 +
+
               </button>
 
+
             </div>
+
 
           </div>
 
 
-          <!-- COMPRAR -->
+
+          <!-- =====================================
+               BOTÓN PRINCIPAL CONTRA ENTREGA
+          ====================================== -->
 
           <button
-  class="buy-button"
-  id="buy-button"
-  type="button"
->
-  COMPRAR AHORA
-</button>
+            id="cod-buy-button"
+            class="cod-buy-button"
+            type="button"
+          >
 
 
-<button
-  class="cod-buy-button"
-  id="cod-buy-button"
-  type="button"
->
+            <strong>
 
-  <strong>
-    COMPRAR CONTRA ENTREGA
-  </strong>
+              PEDIR Y PAGAR CONTRA ENTREGA
 
-  <span>
-    Paga cuando recibas · Envío gratis
-  </span>
+            </strong>
 
-</button>
 
-          <!-- DESCRIPCIÓN -->
+            <span>
+
+              Paga cuando recibas · Envío gratis
+
+            </span>
+
+
+          </button>
+
+
+
+          <!-- =====================================
+               DESCRIPCIÓN
+          ====================================== -->
 
           <p class="product-description">
 
@@ -407,8 +497,9 @@
             </strong>
 
             Protege tu dinero, documentos, joyas y objetos
-            de valor con una caja fuerte compacta y resistente,
-            ideal para el hogar, oficina o negocio.
+            de valor con una caja fuerte compacta y
+            resistente, ideal para el hogar, oficina o
+            negocio.
 
             Cuenta con código digital programable,
             2 llaves de emergencia, bloqueo tras intentos
@@ -418,65 +509,81 @@
           </p>
 
 
-          <!-- BENEFICIOS RÁPIDOS -->
+
+          <!-- =====================================
+               BENEFICIOS RÁPIDOS
+          ====================================== -->
 
           <div class="quick-benefits">
 
-            <div>
+
+            <span>
               ✓ Acero templado y puerta reforzada
-            </div>
+            </span>
 
-            <div>
+            <span>
               ✓ Código digital programable
-            </div>
+            </span>
 
-            <div>
+            <span>
               ✓ Incluye 2 llaves de emergencia
-            </div>
+            </span>
 
-            <div>
+            <span>
               ✓ Bloqueo tras 3 intentos fallidos
-            </div>
+            </span>
 
-            <div>
+            <span>
               ✓ Diseño compacto de 23 × 17 × 17 cm
-            </div>
+            </span>
 
-            <div>
+            <span>
               ✓ Incluye 2 pernos de anclaje
-            </div>
+            </span>
 
-            <div>
+            <span>
               ✓ Ideal para hogar, oficina, negocio u hotel
-            </div>
+            </span>
 
-            <div>
+            <span>
               ✓ Ayuda a proteger contra la humedad
-            </div>
+            </span>
+
 
           </div>
 
 
+
+          <!-- =====================================
+               INFO COMPRA
+          ====================================== -->
+
           <div class="payment-info">
 
-            <div>
-              🔒 Pago seguro
-            </div>
 
-            <div>
+            <span>
+              ✓ Pago contra entrega
+            </span>
+
+
+            <span>
               ✓ Envío GRATIS
-            </div>
+            </span>
 
-            <div>
-              ✓ Compra protegida
-            </div>
+
+            <span>
+              ✓ Compra segura
+            </span>
+
 
           </div>
 
 
         </div>
 
+
       </div>
+
 
     </section>
 
@@ -488,25 +595,37 @@
 
     <section class="section benefits-section">
 
+
       <div class="container">
+
 
         <div class="section-heading">
 
+
           <span>
-            BENEFICIOS
+            PROTECCIÓN PARA LO QUE MÁS IMPORTA
           </span>
 
+
           <h2>
-            Diseñado para proteger lo que más importa.
+
+            SEGURIDAD
+            <br>
+            DONDE LA NECESITES.
+
           </h2>
 
+
           <p>
-            Seguridad práctica para guardar dinero,
-            documentos y objetos de valor en casa,
-            oficina o negocio.
+
+            Una solución compacta para proteger efectivo,
+            documentos, joyas y objetos importantes.
+
           </p>
 
+
         </div>
+
 
 
         <div class="benefits-grid">
@@ -514,61 +633,98 @@
 
           <article class="benefit-card">
 
-            <div class="benefit-number">
+
+            <span class="benefit-number">
+
               01
-            </div>
+
+            </span>
+
 
             <h3>
-              Seguridad digital
+
+              ACERO REFORZADO
+
             </h3>
 
+
             <p>
-              Configura tu propio código de acceso para
-              abrir la caja de forma rápida y segura.
+
+              Estructura resistente con puerta reforzada
+              para aumentar la protección de tus objetos
+              personales.
+
             </p>
+
 
           </article>
 
 
+
           <article class="benefit-card">
 
-            <div class="benefit-number">
+
+            <span class="benefit-number">
+
               02
-            </div>
+
+            </span>
+
 
             <h3>
-              Acceso de emergencia
+
+              ACCESO DIGITAL
+
             </h3>
 
+
             <p>
-              Incluye dos llaves de emergencia para acceder
-              a la caja cuando sea necesario.
+
+              Configura tu propio código de seguridad para
+              acceder rápidamente a la caja cuando lo
+              necesites.
+
             </p>
+
 
           </article>
 
 
+
           <article class="benefit-card">
 
-            <div class="benefit-number">
+
+            <span class="benefit-number">
+
               03
-            </div>
+
+            </span>
+
 
             <h3>
-              Instalación segura
+
+              LLAVES DE RESPALDO
+
             </h3>
 
+
             <p>
-              Incluye pernos de anclaje para fijarla
-              de manera más segura.
+
+              Incluye dos llaves de emergencia para
+              brindarte una alternativa de acceso cuando
+              sea necesario.
+
             </p>
+
 
           </article>
 
 
         </div>
 
+
       </div>
+
 
     </section>
 
@@ -580,28 +736,51 @@
 
     <section class="banner-section">
 
+
       <div class="banner-overlay"></div>
+
 
       <div class="container banner-content">
 
+
         <span>
-          SEGURIDAD PARA TU ESPACIO
+
+          PROTEGE TUS OBJETOS DE VALOR
+
         </span>
 
+
         <h2>
-          Protege tus objetos de valor.
+
+          TU SEGURIDAD
+          <br>
+          EN UN SOLO LUGAR.
+
         </h2>
 
+
         <p>
-          Una solución compacta para mantener protegidos
-          documentos, dinero, joyas y objetos importantes.
+
+          Diseñada para guardar dinero, documentos,
+          joyas y objetos importantes en casa,
+          oficina o negocio.
+
         </p>
 
-        <a href="#producto">
-          COMPRAR AHORA
-        </a>
+
+        <button
+          class="banner-cod-button"
+          id="banner-cod-button"
+          type="button"
+        >
+
+          PEDIR Y PAGAR CONTRA ENTREGA
+
+        </button>
+
 
       </div>
+
 
     </section>
 
@@ -611,108 +790,155 @@
          CARACTERÍSTICAS
     ========================================== -->
 
-    <section class="section features-section">
+    <section class="section">
+
 
       <div class="container features-grid">
 
+
         <div class="features-title">
 
+
           <span>
-            CARACTERÍSTICAS
+
+            DETALLES
+
           </span>
 
+
           <h2>
-            Todo lo que necesitas saber.
+
+            PENSADA PARA
+            <br>
+            TU SEGURIDAD.
+
           </h2>
 
+
         </div>
+
 
 
         <div class="features-list">
 
 
-          <div class="feature">
+          <article class="feature">
 
-            <span>01</span>
+
+            <span>
+              01
+            </span>
+
 
             <div>
 
               <h3>
-                Acero reforzado
+                Código digital programable
               </h3>
 
               <p>
-                Construcción resistente pensada para
-                proteger tus objetos de valor.
+
+                Configura una combinación personal para
+                controlar el acceso a la caja fuerte.
+
               </p>
 
             </div>
 
-          </div>
+
+          </article>
 
 
-          <div class="feature">
 
-            <span>02</span>
+          <article class="feature">
+
+
+            <span>
+              02
+            </span>
+
 
             <div>
 
               <h3>
-                Código digital
+                Bloqueo de seguridad
               </h3>
 
               <p>
-                Sistema electrónico con código programable
-                para controlar el acceso.
+
+                El sistema bloquea temporalmente el acceso
+                después de tres intentos fallidos.
+
               </p>
 
             </div>
 
-          </div>
+
+          </article>
 
 
-          <div class="feature">
 
-            <span>03</span>
+          <article class="feature">
+
+
+            <span>
+              03
+            </span>
+
 
             <div>
 
               <h3>
-                Llaves de emergencia
+                Dos pernos de anclaje
               </h3>
 
               <p>
-                Incluye dos llaves para apertura alternativa.
+
+                Permiten fijar la caja a una superficie
+                para una instalación más segura.
+
               </p>
 
             </div>
 
-          </div>
+
+          </article>
 
 
-          <div class="feature">
 
-            <span>04</span>
+          <article class="feature">
+
+
+            <span>
+              04
+            </span>
+
 
             <div>
 
               <h3>
-                Pernos de anclaje
+                Tamaño compacto
               </h3>
 
               <p>
-                Incluye dos pernos para realizar
-                una instalación más segura.
+
+                Medidas aproximadas de
+                23 × 17 × 17 cm para adaptarse
+                fácilmente a diferentes espacios.
+
               </p>
 
             </div>
 
-          </div>
+
+          </article>
 
 
         </div>
 
+
       </div>
+
 
     </section>
 
@@ -724,19 +950,31 @@
 
     <section class="section reviews-section">
 
+
       <div class="container">
+
 
         <div class="section-heading review-heading">
 
+
           <span>
-            RESEÑAS
+
+            EXPERIENCIAS
+
           </span>
 
+
           <h2>
-            Clientes que ya la probaron.
+
+            LO QUE DICEN
+            <br>
+            NUESTROS CLIENTES.
+
           </h2>
 
+
         </div>
+
 
 
         <div class="reviews-grid">
@@ -744,61 +982,98 @@
 
           <article class="review-card">
 
+
             <div class="stars">
+
               ★★★★★
+
             </div>
 
+
             <p>
-              “Excelente producto. Se nota la calidad
-              desde el primer momento.”
+
+              “Práctica, compacta y fácil de configurar.
+              La usamos para guardar documentos y dinero
+              en casa.”
+
             </p>
 
+
             <strong>
+
               CLIENTE VERIFICADO
+
             </strong>
+
 
           </article>
 
 
+
           <article class="review-card">
 
+
             <div class="stars">
+
               ★★★★★
+
             </div>
 
+
             <p>
-              “Llegó rápido y el producto fue exactamente
-              lo que esperaba.”
+
+              “El tamaño es ideal para tenerla en la
+              oficina. El código funciona muy bien y las
+              llaves sirven como respaldo.”
+
             </p>
 
+
             <strong>
+
               CLIENTE VERIFICADO
+
             </strong>
+
 
           </article>
 
 
+
           <article class="review-card">
 
+
             <div class="stars">
+
               ★★★★★
+
             </div>
 
+
             <p>
-              “Muy buena calidad. Definitivamente
-              volvería a comprar.”
+
+              “Llegó bien empacada y fue fácil instalarla.
+              Me gustó que incluye los pernos para
+              asegurarla.”
+
             </p>
 
+
             <strong>
+
               CLIENTE VERIFICADO
+
             </strong>
+
 
           </article>
 
 
         </div>
 
+
       </div>
+
 
     </section>
 
@@ -808,131 +1083,318 @@
          FAQ
     ========================================== -->
 
-    <section class="section faq-section">
+    <section class="section">
+
 
       <div class="container faq-container">
 
+
         <div class="section-heading">
 
+
           <span>
+
             PREGUNTAS FRECUENTES
+
           </span>
 
+
           <h2>
-            ¿Tienes preguntas?
+
+            TODO LO QUE
+            <br>
+            NECESITAS SABER.
+
           </h2>
 
+
         </div>
+
 
 
         <div class="faq-list">
 
 
+          <!-- FAQ 1 -->
+
           <div class="faq-item">
 
-            <button class="faq-question">
+
+            <button
+              class="faq-question"
+              type="button"
+            >
+
 
               <span class="faq-title">
-                ¿Cuánto tarda el envío?
+
+                ¿Cómo funciona el pago contra entrega?
+
               </span>
 
+
               <span class="faq-icon">
+
                 +
+
               </span>
+
 
             </button>
 
+
             <div class="faq-answer">
 
+
               <p>
-                Los tiempos de entrega dependerán
-                de la ciudad.
+
+                Realizas tu pedido en nuestra página y
+                pagas cuando recibas el producto en la
+                dirección registrada.
+
               </p>
 
+
             </div>
+
 
           </div>
 
 
+
+          <!-- FAQ 2 -->
+
           <div class="faq-item">
 
-            <button class="faq-question">
+
+            <button
+              class="faq-question"
+              type="button"
+            >
+
 
               <span class="faq-title">
-                ¿Qué métodos de pago aceptan?
+
+                ¿El envío tiene costo?
+
               </span>
 
+
               <span class="faq-icon">
+
                 +
+
               </span>
+
 
             </button>
 
+
             <div class="faq-answer">
 
+
               <p>
-                Próximamente conectaremos esta página
-                con Mercado Pago.
+
+                No. El envío de esta oferta es GRATIS
+                a toda Colombia.
+
               </p>
 
+
             </div>
+
 
           </div>
 
 
+
+          <!-- FAQ 3 -->
+
           <div class="faq-item">
 
-            <button class="faq-question">
+
+            <button
+              class="faq-question"
+              type="button"
+            >
+
 
               <span class="faq-title">
-                ¿Incluye llaves de emergencia?
+
+                ¿Incluye llaves?
+
               </span>
 
+
               <span class="faq-icon">
+
                 +
+
               </span>
+
 
             </button>
 
+
             <div class="faq-answer">
 
+
               <p>
-                Sí. La caja fuerte incluye
-                2 llaves de emergencia.
+
+                Sí. La caja fuerte incluye dos llaves
+                de emergencia como método alternativo
+                de acceso.
+
               </p>
 
+
             </div>
+
+
+          </div>
+
+
+
+          <!-- FAQ 4 -->
+
+          <div class="faq-item">
+
+
+            <button
+              class="faq-question"
+              type="button"
+            >
+
+
+              <span class="faq-title">
+
+                ¿Se puede fijar a una superficie?
+
+              </span>
+
+
+              <span class="faq-icon">
+
+                +
+
+              </span>
+
+
+            </button>
+
+
+            <div class="faq-answer">
+
+
+              <p>
+
+                Sí. Incluye dos pernos de anclaje para
+                facilitar una instalación más segura.
+
+              </p>
+
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- FAQ 5 -->
+
+          <div class="faq-item">
+
+
+            <button
+              class="faq-question"
+              type="button"
+            >
+
+
+              <span class="faq-title">
+
+                ¿Qué pasa si olvido el código?
+
+              </span>
+
+
+              <span class="faq-icon">
+
+                +
+
+              </span>
+
+
+            </button>
+
+
+            <div class="faq-answer">
+
+
+              <p>
+
+                Puedes utilizar las llaves de emergencia
+                incluidas para acceder a la caja.
+
+              </p>
+
+
+            </div>
+
 
           </div>
 
 
         </div>
 
+
       </div>
+
 
     </section>
 
 
 
-    <!-- CTA FINAL -->
+    <!-- =========================================
+         CTA FINAL
+    ========================================== -->
 
     <section class="final-cta">
 
+
       <div class="container">
 
+
         <span>
-          PROTEGE LO QUE MÁS IMPORTA
+
+          ENVÍO GRATIS · PAGO AL RECIBIR
+
         </span>
 
+
         <h2>
-          ¿Listo para pedir la tuya?
+
+          PROTEGE LO QUE
+          <br>
+          MÁS IMPORTA.
+
         </h2>
 
-        <a href="#producto">
-          VER PRODUCTO
-        </a>
+
+        <button
+          id="final-cod-button"
+          class="final-cod-button"
+          type="button"
+        >
+
+          PEDIR Y PAGAR CONTRA ENTREGA
+
+        </button>
+
 
       </div>
+
 
     </section>
 
@@ -941,70 +1403,107 @@
 
 
 
-  <!-- FOOTER -->
+  <!-- =========================================
+       FOOTER
+  ========================================== -->
 
   <footer class="footer">
 
+
     <div class="container footer-content">
 
+
       <strong>
+
         RS IMPORTS
+
       </strong>
+
 
       <div class="footer-links">
 
-        <a href="#">
-          Envíos
+
+        <a href="#inicio">
+
+          Producto
+
         </a>
 
-        <a href="#">
-          Cambios
-        </a>
 
         <a href="#">
-          Privacidad
+
+          Política de privacidad
+
         </a>
+
+
+        <a href="#">
+
+          Términos y condiciones
+
+        </a>
+
 
       </div>
 
+
       <p>
-        © 2026 RS Imports. Todos los derechos reservados.
+
+        © 2026 RS Imports
+
       </p>
 
+
     </div>
+
 
   </footer>
 
 
 
   <!-- =========================================
-       BUY BAR MOBILE
+       MOBILE STICKY CTA
   ========================================== -->
 
   <div class="mobile-buy-bar">
 
+
     <div class="mobile-price">
 
       <small>
+
         PRECIO
+
       </small>
 
+
       <strong>
+
         $129.900
+
       </strong>
 
     </div>
 
-    <button id="mobile-buy-button">
-      COMPRAR AHORA
+
+    <button
+      id="mobile-cod-button"
+      type="button"
+    >
+
+      PEDIR Y PAGAR
+      <br>
+      CONTRA ENTREGA
+
     </button>
+
 
   </div>
 
 
 
   <!-- =========================================
-       ZOOM
+       MODAL ZOOM
   ========================================== -->
 
   <div
@@ -1013,1276 +1512,835 @@
     aria-hidden="true"
   >
 
+
     <button
       id="zoom-close"
       class="zoom-close"
       type="button"
+      aria-label="Cerrar zoom"
     >
+
       ×
+
     </button>
 
 
     <div class="zoom-image-container">
 
+
       <img
         id="zoom-image"
-        src=""
-        alt="Caja fuerte ampliada"
         class="zoom-image"
+        src=""
+        alt="Vista ampliada de la Caja Fuerte Digital"
       >
 
+
     </div>
 
 
-    <div class="zoom-help">
-      Clic sobre la imagen para ampliar
-    </div>
+    <span class="zoom-help">
+
+      Haz clic en la imagen para ampliar
+
+    </span>
+
 
   </div>
 
 
 
   <!-- =========================================
-       FONDO CART DRAWER
+       CHECKOUT OVERLAY
   ========================================== -->
 
   <div
-    id="cart-overlay"
-    class="cart-overlay"
+    id="checkout-overlay"
+    class="checkout-overlay"
   ></div>
 
 
 
   <!-- =========================================
-       CART DRAWER
+       CHECKOUT CONTRA ENTREGA
   ========================================== -->
 
-  <aside
-    id="cart-drawer"
-    class="cart-drawer"
+  <section
+    id="checkout-panel"
+    class="checkout-panel"
     aria-hidden="true"
   >
 
 
-    <!-- HEADER CARRITO -->
-
-    <div class="cart-header">
-
-      <div>
-
-        <span class="cart-label">
-          TU COMPRA
-        </span>
-
-        <h2>
-          Carrito
-        </h2>
-
-      </div>
+    <div class="checkout-container">
 
 
-      <button
-        id="cart-close"
-        class="cart-close"
-        type="button"
-        aria-label="Cerrar carrito"
-      >
-        ×
-      </button>
+      <!-- HEADER -->
 
-    </div>
+      <div class="checkout-header">
 
 
-
-    <!-- ENVÍO GRATIS -->
-
-    <div class="cart-shipping-message">
-
-      ✓ ENVÍO GRATIS A TODA COLOMBIA
-
-    </div>
+        <div>
 
 
+          <span class="checkout-label">
 
-    <!-- PRODUCTO CARRITO -->
+            FINALIZA TU PEDIDO
 
-    <div class="cart-product">
-
-
-      <div class="cart-product-image">
-
-        <img
-          src="./assets/imagen caja fuerte 01. jpg.jpeg"
-          alt="Caja Fuerte Digital"
-        >
-
-      </div>
-
-
-
-      <div class="cart-product-info">
-
-
-        <h3>
-          Caja Fuerte Digital
-        </h3>
-
-
-        <span class="cart-unit-price">
-          $129.900
-        </span>
-
-
-        <div class="cart-quantity">
-
-          <button
-            id="cart-decrease"
-            type="button"
-          >
-            −
-          </button>
-
-          <span id="cart-quantity">
-            1
           </span>
 
-          <button
-            id="cart-increase"
-            type="button"
-          >
-            +
-          </button>
+
+          <h2>
+
+            Datos de entrega
+
+          </h2>
+
 
         </div>
 
 
-      </div>
+        <button
+          id="checkout-close"
+          class="checkout-close"
+          type="button"
+          aria-label="Cerrar checkout"
+        >
 
+          ×
 
-    </div>
+        </button>
 
-
-
-    <!-- RESUMEN -->
-
-    <div class="cart-summary">
-
-
-      <div class="cart-summary-row">
-
-        <span>
-          Subtotal
-        </span>
-
-        <strong id="cart-subtotal">
-          $129.900
-        </strong>
 
       </div>
 
 
-      <div class="cart-summary-row">
 
-        <span>
-          Envío
-        </span>
+      <div class="checkout-grid">
 
-        <strong class="free-shipping">
-          GRATIS
-        </strong>
 
-      </div>
+        <!-- =====================================
+             FORMULARIO
+        ====================================== -->
 
+        <div class="checkout-form-wrapper">
 
-      <div class="cart-total">
 
-        <span>
-          TOTAL
-        </span>
+          <form id="checkout-form">
 
-        <strong id="cart-total">
-          $129.900
-        </strong>
 
-      </div>
+            <!-- CONTACTO -->
 
+            <div class="checkout-section">
 
-    </div>
 
+              <h3>
 
+                Información de contacto
 
-    <!-- CHECKOUT -->
+              </h3>
 
-    <div class="cart-checkout">
 
+              <div class="checkout-fields">
 
-      <button
-        id="checkout-button"
-        class="checkout-button"
-        type="button"
-      >
 
-        FINALIZAR COMPRA
+                <div class="checkout-field full">
 
-      </button>
 
+                  <label for="customer-name">
 
-      <p class="cart-secure">
+                    Nombre completo *
 
-        🔒 Pago seguro y protegido
+                  </label>
 
-      </p>
 
+                  <input
+                    id="customer-name"
+                    name="name"
+                    type="text"
+                    placeholder="Ej: Juan Pérez"
+                    autocomplete="name"
+                    required
+                  >
 
-    </div>
-
-
-  </aside>
-
-
-<!-- =========================================
-     CHECKOUT OVERLAY
-========================================= -->
-
-<div
-  id="checkout-overlay"
-  class="checkout-overlay"
-></div>
-
-
-<!-- =========================================
-     CHECKOUT
-========================================= -->
-
-<section
-  id="checkout-panel"
-  class="checkout-panel"
-  aria-hidden="true"
->
-
-  <div class="checkout-container">
-
-
-    <!-- HEADER -->
-
-    <div class="checkout-header">
-
-      <div>
-
-        <span class="checkout-label">
-          FINALIZA TU PEDIDO
-        </span>
-
-        <h2>
-          Datos de entrega
-        </h2>
-
-      </div>
-
-
-      <button
-        id="checkout-close"
-        class="checkout-close"
-        type="button"
-        aria-label="Cerrar checkout"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-
-    <div class="checkout-grid">
-
-
-      <!-- =====================================
-           FORMULARIO
-      ====================================== -->
-
-      <div class="checkout-form-wrapper">
-
-
-        <form id="checkout-form">
-
-
-          <!-- CONTACTO -->
-
-          <div class="checkout-section">
-
-            <h3>
-              Información de contacto
-            </h3>
-
-
-            <div class="checkout-fields">
-
-
-              <div class="checkout-field full">
-
-                <label for="customer-name">
-                  Nombre completo *
-                </label>
-
-                <input
-                  id="customer-name"
-                  name="name"
-                  type="text"
-                  placeholder="Ej: Juan Pérez"
-                  autocomplete="name"
-                  required
-                >
-
-              </div>
-
-
-
-              <div class="checkout-field">
-
-                <label for="customer-phone">
-                  Celular *
-                </label>
-
-                <input
-                  id="customer-phone"
-                  name="phone"
-                  type="tel"
-                  placeholder="300 000 0000"
-                  autocomplete="tel"
-                  inputmode="tel"
-                  required
-                >
-
-              </div>
-
-
-
-              <div class="checkout-field">
-
-                <label for="customer-email">
-                  Correo electrónico
-                </label>
-
-                <input
-                  id="customer-email"
-                  name="email"
-                  type="email"
-                  placeholder="correo@ejemplo.com"
-                  autocomplete="email"
-                >
-
-              </div>
-
-
-            </div>
-
-          </div>
-
-
-
-          <!-- ENTREGA -->
-
-          <div class="checkout-section">
-
-            <h3>
-              Dirección de entrega
-            </h3>
-
-
-            <div class="checkout-fields">
-
-
-              <div class="checkout-field">
-
-                <label for="customer-department">
-                  Departamento *
-                </label>
-
-                <input
-                  id="customer-department"
-                  name="department"
-                  type="text"
-                  placeholder="Ej: Antioquia"
-                  required
-                >
-
-              </div>
-
-
-
-              <div class="checkout-field">
-
-                <label for="customer-city">
-                  Ciudad *
-                </label>
-
-                <input
-                  id="customer-city"
-                  name="city"
-                  type="text"
-                  placeholder="Ej: Medellín"
-                  required
-                >
-
-              </div>
-
-
-
-              <div class="checkout-field full">
-
-                <label for="customer-address">
-                  Dirección completa *
-                </label>
-
-                <input
-                  id="customer-address"
-                  name="address"
-                  type="text"
-                  placeholder="Ej: Calle 10 # 20-30, Apto 302"
-                  autocomplete="street-address"
-                  required
-                >
-
-              </div>
-
-
-
-              <div class="checkout-field">
-
-                <label for="customer-neighborhood">
-                  Barrio
-                </label>
-
-                <input
-                  id="customer-neighborhood"
-                  name="neighborhood"
-                  type="text"
-                  placeholder="Ej: Laureles"
-                >
-
-              </div>
-
-
-
-              <div class="checkout-field">
-
-                <label for="customer-reference">
-                  Referencia
-                </label>
-
-                <input
-                  id="customer-reference"
-                  name="reference"
-                  type="text"
-                  placeholder="Ej: Edificio gris"
-                >
-
-              </div>
-
-
-
-              <div class="checkout-field full">
-
-                <label for="customer-notes">
-                  Indicaciones adicionales
-                </label>
-
-                <textarea
-                  id="customer-notes"
-                  name="notes"
-                  placeholder="Información adicional para realizar la entrega"
-                ></textarea>
-
-              </div>
-
-
-            </div>
-
-          </div>
-
-
-
-          <!-- MÉTODO DE PAGO -->
-
-          <div class="checkout-section">
-
-            <h3>
-              Método de pago
-            </h3>
-
-
-            <label class="payment-method selected">
-
-              <input
-                type="radio"
-                name="payment"
-                value="contra-entrega"
-                checked
-              >
-
-
-              <div class="payment-method-content">
-
-                <div class="payment-method-top">
-
-                  <strong>
-                    Pago contra entrega
-                  </strong>
-
-                  <span>
-                    SELECCIONADO
-                  </span>
 
                 </div>
 
 
-                <p>
-                  Paga $129.900 cuando recibas tu pedido.
-                </p>
+
+                <div class="checkout-field">
 
 
-                <small>
-                  No necesitas realizar ningún pago anticipado.
-                </small>
+                  <label for="customer-phone">
+
+                    Celular *
+
+                  </label>
+
+
+                  <input
+                    id="customer-phone"
+                    name="phone"
+                    type="tel"
+                    placeholder="300 000 0000"
+                    autocomplete="tel"
+                    inputmode="numeric"
+                    required
+                  >
+
+
+                </div>
+
+
+
+                <div class="checkout-field">
+
+
+                  <label for="customer-email">
+
+                    Correo electrónico
+
+                  </label>
+
+
+                  <input
+                    id="customer-email"
+                    name="email"
+                    type="email"
+                    placeholder="correo@ejemplo.com"
+                    autocomplete="email"
+                  >
+
+
+                </div>
+
 
               </div>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 DIRECCIÓN
+            ================================== -->
+
+            <div class="checkout-section">
+
+
+              <h3>
+
+                Dirección de entrega
+
+              </h3>
+
+
+              <div class="checkout-fields">
+
+
+                <div class="checkout-field">
+
+
+                  <label for="customer-department">
+
+                    Departamento *
+
+                  </label>
+
+
+                  <input
+                    id="customer-department"
+                    name="department"
+                    type="text"
+                    placeholder="Ej: Antioquia"
+                    required
+                  >
+
+
+                </div>
+
+
+
+                <div class="checkout-field">
+
+
+                  <label for="customer-city">
+
+                    Ciudad *
+
+                  </label>
+
+
+                  <input
+                    id="customer-city"
+                    name="city"
+                    type="text"
+                    placeholder="Ej: Medellín"
+                    required
+                  >
+
+
+                </div>
+
+
+
+                <div class="checkout-field full">
+
+
+                  <label for="customer-address">
+
+                    Dirección completa *
+
+                  </label>
+
+
+                  <input
+                    id="customer-address"
+                    name="address"
+                    type="text"
+                    placeholder="Ej: Calle 10 # 20-30, Apto 302"
+                    autocomplete="street-address"
+                    required
+                  >
+
+
+                </div>
+
+
+
+                <div class="checkout-field">
+
+
+                  <label for="customer-neighborhood">
+
+                    Barrio
+
+                  </label>
+
+
+                  <input
+                    id="customer-neighborhood"
+                    name="neighborhood"
+                    type="text"
+                    placeholder="Ej: Laureles"
+                  >
+
+
+                </div>
+
+
+
+                <div class="checkout-field">
+
+
+                  <label for="customer-reference">
+
+                    Referencia
+
+                  </label>
+
+
+                  <input
+                    id="customer-reference"
+                    name="reference"
+                    type="text"
+                    placeholder="Ej: Edificio gris"
+                  >
+
+
+                </div>
+
+
+
+                <div class="checkout-field full">
+
+
+                  <label for="customer-notes">
+
+                    Indicaciones adicionales
+
+                  </label>
+
+
+                  <textarea
+                    id="customer-notes"
+                    name="notes"
+                    placeholder="Información adicional para realizar la entrega"
+                  ></textarea>
+
+
+                </div>
+
+
+              </div>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 PAGO CONTRA ENTREGA
+            ================================== -->
+
+            <div class="checkout-section">
+
+
+              <h3>
+
+                Forma de pago
+
+              </h3>
+
+
+              <div class="cod-payment-info">
+
+
+                <div class="cod-payment-check">
+
+                  ✓
+
+                </div>
+
+
+                <div>
+
+
+                  <strong>
+
+                    PAGO CONTRA ENTREGA
+
+                  </strong>
+
+
+                  <p>
+
+                    Paga únicamente cuando recibas
+                    tu pedido.
+
+                  </p>
+
+
+                  <small>
+
+                    No necesitas realizar ningún
+                    pago anticipado.
+
+                  </small>
+
+
+                </div>
+
+
+              </div>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 CONFIRMACIÓN
+            ================================== -->
+
+            <label class="order-confirmation">
+
+
+              <input
+                id="order-confirmation"
+                type="checkbox"
+                required
+              >
+
+
+              <span>
+
+                Confirmo que los datos ingresados son
+                correctos y que recibiré el pedido
+                en la dirección indicada.
+
+              </span>
+
 
             </label>
 
-          </div>
 
 
+            <!-- =================================
+                 CONFIRMAR
+            ================================== -->
 
-          <!-- CONFIRMACIÓN -->
-
-          <label class="order-confirmation">
-
-            <input
-              id="order-confirmation"
-              type="checkbox"
-              required
+            <button
+              id="confirm-order-button"
+              class="confirm-order-button"
+              type="submit"
             >
 
-            <span>
-              Confirmo que los datos ingresados son correctos
-              y que recibiré el pedido en la dirección indicada.
-            </span>
+              CONFIRMAR PEDIDO CONTRA ENTREGA
 
-          </label>
+            </button>
 
 
+            <p class="checkout-security">
 
-          <!-- BOTÓN -->
+              Tus datos serán utilizados únicamente
+              para gestionar y entregar tu pedido.
 
-          <button
-            class="confirm-order-button"
-            type="submit"
-          >
-
-            CONFIRMAR PEDIDO
-
-          </button>
+            </p>
 
 
-          <p class="checkout-security">
-
-            Tus datos serán utilizados únicamente para
-            gestionar y entregar tu pedido.
-
-          </p>
-
-
-        </form>
-
-      </div>
-
-
-
-      <!-- =====================================
-           RESUMEN
-      ====================================== -->
-
-      <aside class="checkout-summary">
-
-
-        <span class="checkout-summary-label">
-          RESUMEN DEL PEDIDO
-        </span>
-
-
-        <div class="checkout-product">
-
-
-          <div class="checkout-product-image">
-
-            <img
-              src="./assets/imagen caja fuerte 01. jpg.jpeg"
-              alt="Caja Fuerte Digital"
-            >
-
-
-            <span
-              id="checkout-product-quantity"
-              class="checkout-product-quantity"
-            >
-              1
-            </span>
-
-          </div>
-
-
-          <div class="checkout-product-info">
-
-            <strong>
-              Caja Fuerte Digital
-            </strong>
-
-            <span>
-              Acero reforzado
-            </span>
-
-            <b id="checkout-product-price">
-              $129.900
-            </b>
-
-          </div>
+          </form>
 
 
         </div>
 
 
 
-        <div class="checkout-totals">
+        <!-- =====================================
+             RESUMEN
+        ====================================== -->
+
+        <aside class="checkout-summary">
 
 
-          <div>
+          <span class="checkout-summary-label">
 
-            <span>
-              Subtotal
-            </span>
+            RESUMEN DEL PEDIDO
 
-            <strong id="checkout-subtotal">
-              $129.900
-            </strong>
-
-          </div>
-
-
-          <div>
-
-            <span>
-              Envío
-            </span>
-
-            <strong class="checkout-free">
-              GRATIS
-            </strong>
-
-          </div>
-
-
-        </div>
-
-
-
-        <div class="checkout-total">
-
-          <span>
-            TOTAL
           </span>
 
-          <strong id="checkout-total">
-            $129.900
+
+
+          <div class="checkout-product">
+
+
+            <div class="checkout-product-image">
+
+
+              <img
+                src="./assets/imagen caja fuerte 01. jpg.jpeg"
+                alt="Caja Fuerte Digital"
+              >
+
+
+              <span
+                id="checkout-product-quantity"
+                class="checkout-product-quantity"
+              >
+
+                1
+
+              </span>
+
+
+            </div>
+
+
+
+            <div class="checkout-product-info">
+
+
+              <strong>
+
+                Caja Fuerte Digital
+
+              </strong>
+
+
+              <span>
+
+                Acero reforzado
+
+              </span>
+
+
+              <b id="checkout-product-price">
+
+                $129.900
+
+              </b>
+
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- TOTALES -->
+
+          <div class="checkout-totals">
+
+
+            <div>
+
+
+              <span>
+
+                Subtotal
+
+              </span>
+
+
+              <strong id="checkout-subtotal">
+
+                $129.900
+
+              </strong>
+
+
+            </div>
+
+
+
+            <div>
+
+
+              <span>
+
+                Envío
+
+              </span>
+
+
+              <strong class="checkout-free">
+
+                GRATIS
+
+              </strong>
+
+
+            </div>
+
+
+          </div>
+
+
+
+          <div class="checkout-total">
+
+
+            <span>
+
+              TOTAL
+
+            </span>
+
+
+            <strong id="checkout-total">
+
+              $129.900
+
+            </strong>
+
+
+          </div>
+
+
+
+          <!-- PAGO -->
+
+          <div class="checkout-cod-message">
+
+
+            <strong>
+
+              ✓ PAGO CONTRA ENTREGA
+
+            </strong>
+
+
+            <p>
+
+              Pagarás el total de tu pedido
+              cuando lo recibas.
+
+            </p>
+
+
+          </div>
+
+
+        </aside>
+
+
+      </div>
+
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- =========================================
+       PEDIDO CONFIRMADO
+  ========================================== -->
+
+  <div
+    id="order-success"
+    class="order-success"
+  >
+
+
+    <div class="order-success-box">
+
+
+      <div class="success-check">
+
+        ✓
+
+      </div>
+
+
+      <span>
+
+        PEDIDO RECIBIDO
+
+      </span>
+
+
+      <h2>
+
+        ¡Tu pedido ha sido confirmado!
+
+      </h2>
+
+
+      <p>
+
+        Hemos recibido correctamente tus datos.
+        Tu pedido será procesado para entrega.
+
+      </p>
+
+
+
+      <div class="success-summary">
+
+
+        <div>
+
+
+          <span>
+
+            Pedido
+
+          </span>
+
+
+          <strong id="success-order-id">
+
+            Por confirmar
+
           </strong>
+
 
         </div>
 
 
 
-        <div class="checkout-cod-message">
+        <div>
+
+
+          <span>
+
+            Producto
+
+          </span>
+
 
           <strong>
-            PAGO CONTRA ENTREGA
+
+            Caja Fuerte Digital
+
           </strong>
 
-          <p>
-            Pagarás el total de tu pedido cuando
-            lo recibas.
-          </p>
 
         </div>
 
 
-      </aside>
+
+        <div>
 
 
-    </div>
+          <span>
+
+            Forma de pago
+
+          </span>
 
 
-  </div>
+          <strong>
 
-</section>
+            Contra entrega
 
-
-
-<!-- =========================================
-     PEDIDO CONFIRMADO
-========================================= -->
-
-<div
-  id="order-success"
-  class="order-success"
->
+          </strong>
 
 
-  <div class="order-success-box">
+        </div>
 
 
-    <div class="success-check">
-      ✓
-    </div>
+
+        <div>
 
 
-    <span>
-      PEDIDO RECIBIDO
-    </span>
+          <span>
+
+            Envío
+
+          </span>
 
 
-    <h2>
-      ¡Tu pedido ha sido confirmado!
-    </h2>
+          <strong>
+
+            GRATIS
+
+          </strong>
 
 
-    <p>
-      Hemos recibido correctamente tus datos.
-      Tu pedido será procesado para entrega.
-    </p>
+        </div>
 
 
-    <div class="success-summary">
 
-      <div>
+        <div>
 
-        <span>
-          Producto
-        </span>
 
-        <strong>
-          Caja Fuerte Digital
-        </strong>
+          <span>
+
+            Total a pagar al recibir
+
+          </span>
+
+
+          <strong
+            id="success-total"
+            class="success-total"
+          >
+
+            $129.900
+
+          </strong>
+
+
+        </div>
+
 
       </div>
 
-
-      <div>
-
-        <span>
-          Forma de pago
-        </span>
-
-        <strong>
-          Contra entrega
-        </strong>
-
-      </div>
-
-
-      <div>
-
-        <span>
-          Envío
-        </span>
-
-        <strong>
-          GRATIS
-        </strong>
-
-      </div>
-
-
-      <div>
-
-        <span>
-          Total a pagar al recibir
-        </span>
-
-        <strong
-          id="success-total"
-          class="success-total"
-        >
-          $129.900
-        </strong>
-
-      </div>
-
-    </div>
-
-
-    <button
-      id="success-close"
-      type="button"
-    >
-      VOLVER A LA TIENDA
-    </button>
-
-
-  </div>
-
-
-</div>
-<!-- =========================================
-     CHECKOUT ONLINE OVERLAY
-========================================= -->
-
-<div
-  id="online-checkout-overlay"
-  class="checkout-overlay"
-></div>
-
-
-<!-- =========================================
-     CHECKOUT ONLINE
-========================================= -->
-
-<section
-  id="online-checkout-panel"
-  class="checkout-panel"
-  aria-hidden="true"
->
-
-  <div class="checkout-container">
-
-
-    <!-- HEADER -->
-
-    <div class="checkout-header">
-
-      <div>
-
-        <span class="checkout-label">
-          FINALIZA TU COMPRA
-        </span>
-
-        <h2>
-          Datos de entrega
-        </h2>
-
-      </div>
 
 
       <button
-        id="online-checkout-close"
-        class="checkout-close"
+        id="success-close"
         type="button"
-        aria-label="Cerrar checkout"
       >
-        ×
+
+        VOLVER A LA TIENDA
+
       </button>
-
-    </div>
-
-
-
-    <div class="checkout-grid">
-
-
-      <!-- =====================================
-           FORMULARIO ONLINE
-      ====================================== -->
-
-      <div class="checkout-form-wrapper">
-
-
-        <form id="online-checkout-form">
-
-
-          <!-- CONTACTO -->
-
-          <div class="checkout-section">
-
-            <h3>
-              Información de contacto
-            </h3>
-
-
-            <div class="checkout-fields">
-
-
-              <div class="checkout-field full">
-
-                <label for="online-customer-name">
-                  Nombre completo *
-                </label>
-
-                <input
-                  id="online-customer-name"
-                  name="name"
-                  type="text"
-                  placeholder="Ej: Juan Pérez"
-                  autocomplete="name"
-                  required
-                >
-
-              </div>
-
-
-              <div class="checkout-field">
-
-                <label for="online-customer-phone">
-                  Celular *
-                </label>
-
-                <input
-                  id="online-customer-phone"
-                  name="phone"
-                  type="tel"
-                  placeholder="300 000 0000"
-                  autocomplete="tel"
-                  inputmode="tel"
-                  required
-                >
-
-              </div>
-
-
-              <div class="checkout-field">
-
-                <label for="online-customer-email">
-                  Correo electrónico *
-                </label>
-
-                <input
-                  id="online-customer-email"
-                  name="email"
-                  type="email"
-                  placeholder="correo@ejemplo.com"
-                  autocomplete="email"
-                  required
-                >
-
-              </div>
-
-
-            </div>
-
-          </div>
-
-
-
-          <!-- DIRECCIÓN -->
-
-          <div class="checkout-section">
-
-            <h3>
-              Dirección de entrega
-            </h3>
-
-
-            <div class="checkout-fields">
-
-
-              <div class="checkout-field">
-
-                <label for="online-customer-department">
-                  Departamento *
-                </label>
-
-                <input
-                  id="online-customer-department"
-                  name="department"
-                  type="text"
-                  placeholder="Ej: Antioquia"
-                  required
-                >
-
-              </div>
-
-
-              <div class="checkout-field">
-
-                <label for="online-customer-city">
-                  Ciudad *
-                </label>
-
-                <input
-                  id="online-customer-city"
-                  name="city"
-                  type="text"
-                  placeholder="Ej: Medellín"
-                  required
-                >
-
-              </div>
-
-
-              <div class="checkout-field full">
-
-                <label for="online-customer-address">
-                  Dirección completa *
-                </label>
-
-                <input
-                  id="online-customer-address"
-                  name="address"
-                  type="text"
-                  placeholder="Ej: Calle 10 # 20-30, Apto 302"
-                  autocomplete="street-address"
-                  required
-                >
-
-              </div>
-
-
-              <div class="checkout-field">
-
-                <label for="online-customer-neighborhood">
-                  Barrio
-                </label>
-
-                <input
-                  id="online-customer-neighborhood"
-                  name="neighborhood"
-                  type="text"
-                  placeholder="Ej: Laureles"
-                >
-
-              </div>
-
-
-              <div class="checkout-field">
-
-                <label for="online-customer-reference">
-                  Referencia
-                </label>
-
-                <input
-                  id="online-customer-reference"
-                  name="reference"
-                  type="text"
-                  placeholder="Ej: Edificio gris"
-                >
-
-              </div>
-
-
-              <div class="checkout-field full">
-
-                <label for="online-customer-notes">
-                  Indicaciones adicionales
-                </label>
-
-                <textarea
-                  id="online-customer-notes"
-                  name="notes"
-                  placeholder="Información adicional para realizar la entrega"
-                ></textarea>
-
-              </div>
-
-
-            </div>
-
-          </div>
-
-
-
-          <!-- PAGO ONLINE -->
-
-          <div class="checkout-section">
-
-            <h3>
-              Pago seguro
-            </h3>
-
-
-            <div class="online-payment-box">
-
-              <div class="online-payment-icon">
-                $
-              </div>
-
-              <div>
-
-                <strong>
-                  Pago online
-                </strong>
-
-                <p>
-                  Serás dirigido a Mercado Pago para realizar
-                  tu pago de forma segura.
-                </p>
-
-                <small>
-                  Envío GRATIS a toda Colombia.
-                </small>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-
-          <!-- CONFIRMACIÓN -->
-
-          <label class="order-confirmation">
-
-            <input
-              id="online-order-confirmation"
-              type="checkbox"
-              required
-            >
-
-            <span>
-              Confirmo que mis datos de entrega son correctos.
-            </span>
-
-          </label>
-
-
-
-          <!-- PAGAR -->
-
-          <button
-            class="confirm-order-button online-pay-button"
-            type="submit"
-          >
-
-            PAGAR CON MERCADO PAGO
-
-          </button>
-
-
-          <p class="checkout-security">
-
-            El pago se procesará de forma segura
-            mediante Mercado Pago.
-
-          </p>
-
-
-        </form>
-
-      </div>
-
-
-
-      <!-- =====================================
-           RESUMEN ONLINE
-      ====================================== -->
-
-      <aside class="checkout-summary">
-
-
-        <span class="checkout-summary-label">
-          RESUMEN DEL PEDIDO
-        </span>
-
-
-        <div class="checkout-product">
-
-
-          <div class="checkout-product-image">
-
-            <img
-              src="./assets/imagen caja fuerte 01. jpg.jpeg"
-              alt="Caja Fuerte Digital"
-            >
-
-
-            <span
-              id="online-checkout-product-quantity"
-              class="checkout-product-quantity"
-            >
-              1
-            </span>
-
-          </div>
-
-
-          <div class="checkout-product-info">
-
-            <strong>
-              Caja Fuerte Digital
-            </strong>
-
-            <span>
-              Acero reforzado
-            </span>
-
-            <b id="online-checkout-product-price">
-              $129.900
-            </b>
-
-          </div>
-
-
-        </div>
-
-
-
-        <div class="checkout-totals">
-
-
-          <div>
-
-            <span>
-              Subtotal
-            </span>
-
-            <strong id="online-checkout-subtotal">
-              $129.900
-            </strong>
-
-          </div>
-
-
-          <div>
-
-            <span>
-              Envío
-            </span>
-
-            <strong class="checkout-free">
-              GRATIS
-            </strong>
-
-          </div>
-
-
-        </div>
-
-
-
-        <div class="checkout-total">
-
-          <span>
-            TOTAL
-          </span>
-
-          <strong id="online-checkout-total">
-            $129.900
-          </strong>
-
-        </div>
-
-
-        <div class="online-secure-message">
-
-          <strong>
-            COMPRA SEGURA
-          </strong>
-
-          <p>
-            Al continuar serás redirigido a Mercado Pago
-            para completar el pago.
-          </p>
-
-        </div>
-
-
-      </aside>
 
 
     </div>
@@ -2290,7 +2348,12 @@
 
   </div>
 
-</section>
+
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================== -->
+
   <script src="./js/app.js"></script>
 
 
