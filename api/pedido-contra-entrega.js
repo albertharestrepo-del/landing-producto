@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 
 
   /* =======================================================
-     SOLO PERMITIR POST PARA PEDIDOS
+     SOLO PERMITIR POST
   ======================================================= */
 
   if (req.method !== "POST") {
@@ -39,7 +39,7 @@ export default async function handler(req, res) {
 
 
     /* =====================================================
-       VARIABLES PRIVADAS DE VERCEL
+       VARIABLES PRIVADAS
     ===================================================== */
 
     const appsScriptUrl =
@@ -55,11 +55,10 @@ export default async function handler(req, res) {
         "Falta APPS_SCRIPT_URL"
       );
 
-
       return res.status(500).json({
         success: false,
         message:
-          "La conexión con Google Sheets no está configurada."
+          "La conexión con el sistema de pedidos no está configurada."
       });
 
     }
@@ -71,11 +70,10 @@ export default async function handler(req, res) {
         "Falta API_SECRET"
       );
 
-
       return res.status(500).json({
         success: false,
         message:
-          "La seguridad de pedidos no está configurada."
+          "La seguridad del sistema de pedidos no está configurada."
       });
 
     }
@@ -92,6 +90,7 @@ export default async function handler(req, res) {
 
     if (
       !data ||
+      typeof data !== "object" ||
       !data.cliente
     ) {
 
@@ -106,22 +105,29 @@ export default async function handler(req, res) {
 
 
     /* =====================================================
-       CANTIDAD
+       VALIDAR CANTIDAD
     ===================================================== */
 
+    const cantidadRecibida =
+      parseInt(
+        data.cantidad,
+        10
+      ) || 1;
+
+
     const cantidad =
-      Math.max(
-        1,
-        parseInt(
-          data.cantidad,
-          10
-        ) || 1
+      Math.min(
+        10,
+        Math.max(
+          1,
+          cantidadRecibida
+        )
       );
 
 
 
     /* =====================================================
-       LIMPIAR INFORMACIÓN DEL CLIENTE
+       LIMPIAR DATOS DEL CLIENTE
     ===================================================== */
 
     const cliente = {
@@ -129,54 +135,72 @@ export default async function handler(req, res) {
       nombre:
         String(
           data.cliente.nombre || ""
-        ).trim(),
+        )
+          .trim()
+          .slice(0, 100),
 
       celular:
         String(
           data.cliente.celular || ""
-        ).trim(),
+        )
+          .replace(/\D/g, "")
+          .trim(),
 
       email:
         String(
           data.cliente.email || ""
-        ).trim(),
+        )
+          .trim()
+          .slice(0, 150),
 
       departamento:
         String(
           data.cliente.departamento || ""
-        ).trim(),
+        )
+          .trim()
+          .slice(0, 80),
 
       ciudad:
         String(
           data.cliente.ciudad || ""
-        ).trim(),
+        )
+          .trim()
+          .slice(0, 80),
 
       direccion:
         String(
           data.cliente.direccion || ""
-        ).trim(),
+        )
+          .trim()
+          .slice(0, 200),
 
       barrio:
         String(
           data.cliente.barrio || ""
-        ).trim(),
+        )
+          .trim()
+          .slice(0, 100),
 
       referencia:
         String(
           data.cliente.referencia || ""
-        ).trim(),
+        )
+          .trim()
+          .slice(0, 200),
 
       indicaciones:
         String(
           data.cliente.indicaciones || ""
-        ).trim()
+        )
+          .trim()
+          .slice(0, 500)
 
     };
 
 
 
     /* =====================================================
-       VALIDACIONES
+       VALIDACIONES OBLIGATORIAS
     ===================================================== */
 
     if (!cliente.nombre) {
@@ -190,12 +214,18 @@ export default async function handler(req, res) {
     }
 
 
-    if (!cliente.celular) {
+    /* CELULAR COLOMBIANO */
+
+    if (
+      !/^3\d{9}$/.test(
+        cliente.celular
+      )
+    ) {
 
       return res.status(400).json({
         success: false,
         message:
-          "El celular es obligatorio."
+          "Ingresa un celular colombiano válido de 10 dígitos."
       });
 
     }
@@ -236,7 +266,28 @@ export default async function handler(req, res) {
 
 
     /* =====================================================
-       PREPARAR PEDIDO PARA GOOGLE
+       VALIDAR EMAIL SI LO ESCRIBIERON
+    ===================================================== */
+
+    if (
+      cliente.email &&
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+        cliente.email
+      )
+    ) {
+
+      return res.status(400).json({
+        success: false,
+        message:
+          "El correo electrónico no es válido."
+      });
+
+    }
+
+
+
+    /* =====================================================
+       ARMAR PEDIDO
     ===================================================== */
 
     const orderData = {
@@ -258,7 +309,7 @@ export default async function handler(req, res) {
 
 
     /* =====================================================
-       ENVIAR PEDIDO A GOOGLE APPS SCRIPT
+       ENVIAR A GOOGLE APPS SCRIPT
     ===================================================== */
 
     const googleResponse =
@@ -284,7 +335,7 @@ export default async function handler(req, res) {
 
 
     /* =====================================================
-       LEER RESPUESTA DE GOOGLE
+       LEER RESPUESTA GOOGLE
     ===================================================== */
 
     const responseText =
@@ -303,7 +354,6 @@ export default async function handler(req, res) {
 
     } catch (error) {
 
-
       console.error(
         "Respuesta inesperada de Google:",
         responseText
@@ -313,7 +363,7 @@ export default async function handler(req, res) {
       return res.status(502).json({
         success: false,
         message:
-          "Google Sheets devolvió una respuesta inválida."
+          "No fue posible comunicarse correctamente con el sistema de pedidos."
       });
 
     }
@@ -321,7 +371,7 @@ export default async function handler(req, res) {
 
 
     /* =====================================================
-       ERROR REPORTADO POR APPS SCRIPT
+       GOOGLE REPORTÓ ERROR
     ===================================================== */
 
     if (!googleData.success) {
@@ -344,7 +394,7 @@ export default async function handler(req, res) {
 
 
     /* =====================================================
-       TODO CORRECTO
+       PEDIDO EXITOSO
     ===================================================== */
 
     return res.status(200).json({
@@ -357,6 +407,9 @@ export default async function handler(req, res) {
 
       total:
         googleData.total,
+
+      cantidad:
+        cantidad,
 
       message:
         "Pedido registrado correctamente"
@@ -375,8 +428,7 @@ export default async function handler(req, res) {
 
     return res.status(500).json({
 
-      success:
-        false,
+      success: false,
 
       message:
         "Ocurrió un error al registrar el pedido."
