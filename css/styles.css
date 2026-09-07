@@ -1,1361 +1,2898 @@
-/* =========================================================
-   RS IMPORTS
-   CAJA FUERTE DIGITAL
-   LANDING 100% CONTRA ENTREGA
-========================================================= */
+/* ========================================
+   RESET
+======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: #111111;
+  line-height: 1.5;
+}
+
+body,
+button,
+a {
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
 
 
-/* =========================================================
+/* ========================================
+   GENERAL
+======================================== */
+
+.container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+}
+
+.section {
+  padding: 110px 0;
+}
+
+.section-heading {
+  max-width: 700px;
+  margin-bottom: 55px;
+}
+
+.section-heading > span,
+.features-title > span {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  margin-bottom: 15px;
+}
+
+.section-heading h2,
+.features-title h2 {
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 0.95;
+  letter-spacing: -3px;
+  margin-bottom: 20px;
+}
+
+.section-heading p {
+  color: #666;
+  max-width: 550px;
+}
+
+
+/* ========================================
+   ANNOUNCEMENT
+======================================== */
+
+.announcement-bar {
+  background: #111;
+  color: #fff;
+
+  min-height: 36px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 8px 20px;
+
+  text-align: center;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.header {
+  background: rgba(255, 255, 255, 0.96);
+
+  border-bottom: 1px solid #eee;
+
+  position: sticky;
+  top: 0;
+
+  z-index: 1000;
+
+  backdrop-filter: blur(10px);
+}
+
+.header-content {
+  min-height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  width: auto;
+  height: 38px;
+
+  object-fit: contain;
+}
+
+
+/* ========================================
+   HEADER CTA VERDE
+======================================== */
+
+.header-button {
+  border: none;
+
+  background: #138a36;
+  color: #fff;
+
+  padding: 13px 22px;
+
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  animation:
+    headerCodPulse
+    1.8s
+    ease-in-out
+    infinite;
+
+  box-shadow:
+    0 6px 18px
+    rgba(19, 138, 54, 0.22);
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.header-button:hover {
+  background: #0f6f2b;
+}
+
+.header-button::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 70%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      110deg,
+      transparent,
+      rgba(255, 255, 255, 0.35),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  animation:
+    codShine
+    2.7s
+    ease-in-out
+    infinite;
+
+  pointer-events: none;
+}
+
+
+/* ========================================
    PRODUCTO
-========================================================= */
+======================================== */
 
-const product = {
-  name: "Caja Fuerte Digital de Acero Reforzado",
-  price: 129900
-};
+.product-section {
+  padding: 60px 0 110px;
+}
 
-const MAX_QUANTITY = 10;
+.product-grid {
+  display: grid;
 
-let quantity = 1;
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(360px, 0.85fr);
 
+  gap: 75px;
 
-/* =========================================================
-   FORMATEAR PRECIOS
-========================================================= */
-
-function formatPrice(value) {
-
-  return new Intl.NumberFormat(
-    "es-CO",
-    {
-      style: "currency",
-      currency: "COP",
-      maximumFractionDigits: 0
-    }
-  ).format(value);
-
+  align-items: start;
 }
 
 
-/* =========================================================
+/* ========================================
    GALERÍA
-========================================================= */
+======================================== */
 
-const mainProductImage =
-  document.querySelector(
-    "#main-product-image"
-  );
+.product-gallery {
+  min-width: 0;
+}
 
-const mainProductVideo =
-  document.querySelector(
-    "#main-product-video"
-  );
+.main-media-wrapper {
+  position: relative;
 
-const mediaThumbnails =
-  document.querySelectorAll(
-    ".thumbnail"
-  );
+  background: #f1f1f1;
 
-const videoThumbnailPreview =
-  document.querySelector(
-    ".video-thumbnail-preview"
-  );
+  overflow: hidden;
+}
 
+.main-product-image,
+.main-product-video {
+  width: 100%;
 
-/* =========================================================
-   FRAME MINIATURA VIDEO
-========================================================= */
+  aspect-ratio: 1 / 1;
 
-if (videoThumbnailPreview) {
+  object-fit: cover;
+}
 
-  videoThumbnailPreview.addEventListener(
-    "loadedmetadata",
-    () => {
+.main-product-image {
+  transition:
+    opacity 0.2s ease,
+    transform 0.4s ease;
+}
 
-      if (
-        videoThumbnailPreview.duration > 1
-      ) {
+.main-product-video {
+  display: none;
 
-        videoThumbnailPreview.currentTime =
-          0.5;
-
-      }
-
-    }
-  );
-
+  background: #000;
 }
 
 
-/* =========================================================
+/* ========================================
+   MINIATURAS
+======================================== */
+
+.product-thumbnails {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 12px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  padding-bottom: 5px;
+
+  scrollbar-width: thin;
+}
+
+.thumbnail {
+  position: relative;
+
+  flex: 0 0 95px;
+
+  padding: 0;
+
+  border: 2px solid transparent;
+
+  background: #f1f1f1;
+
+  overflow: hidden;
+
+  transition: 0.2s ease;
+}
+
+.thumbnail:hover {
+  opacity: 0.85;
+}
+
+.thumbnail.active {
+  border-color: #111;
+}
+
+.thumbnail img {
+  width: 100%;
+
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+}
+
+
+/* ========================================
+   VIDEO MINIATURA
+======================================== */
+
+.video-thumbnail {
+  position: relative;
+
+  background: #000;
+
+  overflow: hidden;
+}
+
+.video-thumbnail-preview {
+  display: block;
+
+  width: 100%;
+
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+
+  pointer-events: none;
+}
+
+.video-thumbnail-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.18);
+
+  pointer-events: none;
+}
+
+.video-play-icon {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding-left: 3px;
+
+  background: rgba(255, 255, 255, 0.95);
+
+  color: #111;
+
+  border-radius: 50%;
+
+  font-size: 15px;
+
+  box-shadow:
+    0 3px 15px
+    rgba(0, 0, 0, 0.18);
+}
+
+
+/* ========================================
+   CTA GRANDE BAJO MINIATURAS
+======================================== */
+
+.gallery-cod-button-row {
+  width: 100%;
+
+  margin-top: 20px;
+
+  padding: 0;
+}
+
+
+/* ========================================
+   BOTÓN PÍLDORA VERDE
+======================================== */
+
+.gallery-cod-button {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 68px;
+
+  padding: 14px 30px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background: #138a36;
+
+  color: #ffffff;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  font-weight: 900;
+
+  letter-spacing: 0.5px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 10px 30px
+    rgba(19, 138, 54, 0.28);
+
+  animation:
+    codPulseBar
+    1.8s
+    ease-in-out
+    infinite;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.gallery-cod-button:hover {
+  background: #0f6f2b;
+
+  transform: scale(1.015);
+
+  box-shadow:
+    0 12px 35px
+    rgba(19, 138, 54, 0.35);
+}
+
+
+/* ICONO DEL CTA */
+
+.gallery-cod-icon {
+  width: 26px;
+  height: 26px;
+
+  flex: 0 0 26px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  color: #138a36;
+
+  font-size: 14px;
+
+  font-weight: 900;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+.gallery-cod-text {
+  position: relative;
+
+  z-index: 2;
+}
+
+
+/* BRILLO */
+
+.gallery-cod-button::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 45%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      110deg,
+      transparent,
+      rgba(255, 255, 255, 0.36),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  animation:
+    codShine
+    2.7s
+    ease-in-out
+    infinite;
+
+  pointer-events: none;
+}
+
+
+/* ========================================
    ZOOM
-========================================================= */
+======================================== */
 
-const zoomButton =
-  document.querySelector(
-    "#zoom-button"
-  );
+.zoom-button {
+  position: absolute;
 
-const zoomModal =
-  document.querySelector(
-    "#zoom-modal"
-  );
+  left: 22px;
+  bottom: 22px;
 
-const zoomImage =
-  document.querySelector(
-    "#zoom-image"
-  );
+  width: 58px;
+  height: 58px;
 
-const zoomClose =
-  document.querySelector(
-    "#zoom-close"
-  );
+  display: flex;
 
+  align-items: center;
+  justify-content: center;
 
-/* =========================================================
-   CAMBIAR FOTO / VIDEO
-========================================================= */
+  border: 1px solid #d0d0d0;
 
-mediaThumbnails.forEach(
-  (thumbnail) => {
+  border-radius: 50%;
 
-    thumbnail.addEventListener(
-      "click",
-      () => {
+  background: rgba(255, 255, 255, 0.95);
 
-        const type =
-          thumbnail.dataset.type;
+  color: #111;
 
-        const media =
-          thumbnail.dataset.media;
+  z-index: 5;
 
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
 
-        /* QUITAR ACTIVO */
+.zoom-button:hover {
+  transform: scale(1.07);
 
-        mediaThumbnails.forEach(
-          (item) => {
+  background: #fff;
+}
 
-            item.classList.remove(
-              "active"
-            );
+.zoom-button svg {
+  width: 24px;
+  height: 24px;
 
-          }
-        );
+  fill: none;
 
+  stroke: currentColor;
 
-        thumbnail.classList.add(
-          "active"
-        );
+  stroke-width: 2;
 
+  stroke-linecap: round;
 
-        /* =================================
-           MOSTRAR IMAGEN
-        ================================= */
-
-        if (type === "image") {
-
-          if (mainProductVideo) {
-
-            mainProductVideo.pause();
-
-            mainProductVideo.style.display =
-              "none";
-
-          }
-
-
-          if (mainProductImage) {
-
-            mainProductImage.style.display =
-              "block";
-
-            mainProductImage.style.opacity =
-              "0";
-
-
-            setTimeout(
-              () => {
-
-                mainProductImage.src =
-                  media;
-
-                mainProductImage.style.opacity =
-                  "1";
-
-              },
-              120
-            );
-
-          }
-
-
-          if (zoomButton) {
-
-            zoomButton.style.display =
-              "";
-
-          }
-
-        }
-
-
-        /* =================================
-           MOSTRAR VIDEO
-        ================================= */
-
-        if (type === "video") {
-
-          if (mainProductImage) {
-
-            mainProductImage.style.display =
-              "none";
-
-          }
-
-
-          if (mainProductVideo) {
-
-            mainProductVideo.style.display =
-              "block";
-
-          }
-
-
-          if (zoomButton) {
-
-            zoomButton.style.display =
-              "none";
-
-          }
-
-
-          const source =
-            mainProductVideo
-              ?.querySelector(
-                "source"
-              );
-
-
-          if (
-            source &&
-            source.getAttribute("src") !==
-              media
-          ) {
-
-            source.src =
-              media;
-
-            mainProductVideo.load();
-
-          }
-
-
-          mainProductVideo
-            ?.play()
-            .catch(
-              () => {}
-            );
-
-        }
-
-      }
-    );
-
-  }
-);
-
-
-/* =========================================================
-   ABRIR ZOOM
-========================================================= */
-
-if (
-  zoomButton &&
-  zoomModal &&
-  zoomImage
-) {
-
-  zoomButton.addEventListener(
-    "click",
-    () => {
-
-      if (!mainProductImage) {
-        return;
-      }
-
-
-      zoomImage.src =
-        mainProductImage.src;
-
-
-      zoomImage.classList.remove(
-        "zoomed"
-      );
-
-
-      zoomModal.classList.add(
-        "active"
-      );
-
-
-      zoomModal.setAttribute(
-        "aria-hidden",
-        "false"
-      );
-
-
-      document.body.style.overflow =
-        "hidden";
-
-    }
-  );
-
+  stroke-linejoin: round;
 }
 
 
-/* =========================================================
-   CLICK PARA AMPLIAR MÁS
-========================================================= */
+/* ========================================
+   PRODUCT INFO
+======================================== */
 
-if (zoomImage) {
+.product-info {
+  position: sticky;
 
-  zoomImage.addEventListener(
-    "click",
-    () => {
+  top: 120px;
+}
 
-      zoomImage.classList.toggle(
-        "zoomed"
-      );
+.product-tag {
+  display: inline-block;
 
-    }
-  );
+  background: #111;
 
+  color: #fff;
+
+  padding: 6px 10px;
+
+  margin-bottom: 20px;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.product-info h1 {
+  font-size: clamp(40px, 5vw, 66px);
+
+  line-height: 0.9;
+
+  letter-spacing: -3px;
+
+  margin-bottom: 22px;
+
+  max-width: 550px;
 }
 
 
-/* =========================================================
-   CERRAR ZOOM
-========================================================= */
+/* ========================================
+   RATING
+======================================== */
 
-function closeZoom() {
+.rating {
+  display: flex;
 
-  if (!zoomModal) {
-    return;
-  }
+  align-items: center;
 
+  gap: 12px;
 
-  zoomModal.classList.remove(
-    "active"
-  );
+  margin-bottom: 20px;
+}
 
+.rating > span,
+.stars {
+  letter-spacing: 2px;
 
-  zoomModal.setAttribute(
-    "aria-hidden",
-    "true"
-  );
+  font-size: 13px;
+}
 
+.rating small {
+  color: #666;
 
-  if (zoomImage) {
-
-    zoomImage.classList.remove(
-      "zoomed"
-    );
-
-  }
-
-
-  document.body.style.overflow =
-    "";
-
+  font-size: 12px;
 }
 
 
-if (zoomClose) {
+/* ========================================
+   PRECIO
+======================================== */
 
-  zoomClose.addEventListener(
-    "click",
-    closeZoom
-  );
+.product-price {
+  display: flex;
 
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 25px;
+}
+
+.current-price {
+  font-size: 27px;
+
+  font-weight: 900;
+
+  color: #d60000;
+}
+
+.old-price {
+  color: #999;
+
+  text-decoration: line-through;
+
+  font-size: 16px;
 }
 
 
-if (zoomModal) {
+/* ========================================
+   OPCIÓN
+======================================== */
 
-  zoomModal.addEventListener(
-    "click",
-    (event) => {
+.product-option {
+  padding: 22px 0;
 
-      if (
-        event.target ===
-        zoomModal
-      ) {
+  border-top: 1px solid #e6e6e6;
+}
 
-        closeZoom();
+.option-title {
+  font-size: 11px;
 
-      }
+  letter-spacing: 0.8px;
 
-    }
-  );
-
+  margin-bottom: 15px;
 }
 
 
-/* =========================================================
+/* ========================================
    CANTIDAD
-========================================================= */
+======================================== */
 
-const quantityText =
-  document.querySelector(
-    "#quantity"
-  );
+.quantity-selector {
+  width: 135px;
 
-const increaseQuantity =
-  document.querySelector(
-    "#increase-quantity"
-  );
+  height: 48px;
 
-const decreaseQuantity =
-  document.querySelector(
-    "#decrease-quantity"
-  );
+  border: 1px solid #d0d0d0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+.quantity-selector button {
+  width: 42px;
+
+  height: 100%;
+
+  border: none;
+
+  background: transparent;
+
+  font-size: 18px;
+}
+
+.quantity-selector button:hover {
+  background: #f2f2f2;
+}
+
+.quantity-selector span {
+  font-size: 13px;
+
+  font-weight: 800;
+}
 
 
-/* =========================================================
-   ACTUALIZAR CANTIDAD Y TOTAL
-========================================================= */
+/* ========================================
+   CTA PRINCIPAL
+======================================== */
 
-function updateQuantity() {
+.cod-buy-button {
+  position: relative;
 
-  const total =
-    product.price *
-    quantity;
+  width: 100%;
+
+  min-height: 68px;
+
+  margin: 10px 0 22px;
+
+  border: 2px solid #111;
+
+  background: #fff;
+
+  color: #111;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 4px;
+
+  overflow: hidden;
+
+  animation:
+    mainCodPulse
+    1.8s
+    ease-in-out
+    infinite;
+
+  transition: 0.25s ease;
+}
+
+.cod-buy-button strong {
+  font-size: 12px;
+
+  font-weight: 900;
+
+  letter-spacing: 1.2px;
+}
+
+.cod-buy-button span {
+  font-size: 10px;
+
+  color: #666;
+
+  font-weight: 600;
+}
+
+.cod-buy-button:hover {
+  background: #111;
+
+  color: #fff;
+}
+
+.cod-buy-button:hover span {
+  color: #ddd;
+}
 
 
-  /* PDP */
+/* ========================================
+   DESCRIPCIÓN
+======================================== */
 
-  if (quantityText) {
+.product-description {
+  color: #5d5d5d;
 
-    quantityText.textContent =
-      quantity;
+  max-width: 520px;
 
+  font-size: 15px;
+
+  line-height: 1.7;
+
+  margin-bottom: 25px;
+}
+
+
+/* ========================================
+   BENEFICIOS RÁPIDOS
+======================================== */
+
+.quick-benefits {
+  display: grid;
+
+  gap: 12px;
+
+  background: #f6f6f6;
+
+  padding: 24px;
+
+  margin-bottom: 15px;
+
+  font-size: 14px;
+
+  color: #333;
+
+  text-align: left;
+
+  justify-items: start;
+
+  line-height: 1.5;
+}
+
+
+/* ========================================
+   PAYMENT INFO
+======================================== */
+
+.payment-info {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 8px;
+
+  color: #666;
+
+  font-size: 10px;
+}
+
+
+/* ========================================
+   BENEFICIOS
+======================================== */
+
+.benefits-section {
+  background: #f3f3f3;
+}
+
+.benefits-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 18px;
+}
+
+.benefit-card {
+  background: #fff;
+
+  padding: 40px;
+
+  min-height: 300px;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+.benefit-number {
+  font-size: 11px;
+
+  font-weight: 900;
+
+  margin-bottom: auto;
+}
+
+.benefit-card h3 {
+  font-size: 23px;
+
+  letter-spacing: -1px;
+
+  margin-bottom: 12px;
+}
+
+.benefit-card p {
+  color: #666;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+
+/* ========================================
+   BANNER
+======================================== */
+
+.banner-section {
+  position: relative;
+
+  min-height: 720px;
+
+  background-image:
+    url("https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=1800&q=85");
+
+  background-position: center;
+
+  background-size: cover;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  color: #fff;
+}
+
+.banner-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.75),
+      rgba(0, 0, 0, 0.05)
+    );
+}
+
+.banner-content {
+  position: relative;
+
+  z-index: 2;
+
+  padding-bottom: 80px;
+}
+
+.banner-content > span {
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.banner-content h2 {
+  max-width: 850px;
+
+  font-size: clamp(45px, 7vw, 85px);
+
+  line-height: 0.9;
+
+  letter-spacing: -4px;
+
+  margin: 18px 0 22px;
+}
+
+.banner-content p {
+  max-width: 500px;
+
+  font-size: 15px;
+
+  color: #e3e3e3;
+
+  line-height: 1.7;
+
+  margin-bottom: 30px;
+}
+
+.banner-cod-button,
+.final-cod-button {
+  min-height: 58px;
+
+  border: none;
+
+  background: #111;
+
+  color: #fff;
+
+  padding: 0 30px;
+
+  font-size: 11px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+  transition: 0.2s ease;
+}
+
+.banner-cod-button {
+  background: #fff;
+
+  color: #111;
+}
+
+.banner-cod-button:hover {
+  background: #e5e5e5;
+}
+
+.final-cod-button:hover {
+  background: #292929;
+}
+
+
+/* ========================================
+   FEATURES
+======================================== */
+
+.features-grid {
+  display: grid;
+
+  grid-template-columns:
+    0.9fr 1.1fr;
+
+  gap: 100px;
+}
+
+.features-list {
+  border-top: 1px solid #ddd;
+}
+
+.feature {
+  display: grid;
+
+  grid-template-columns:
+    50px 1fr;
+
+  gap: 20px;
+
+  padding: 32px 0;
+
+  border-bottom: 1px solid #ddd;
+}
+
+.feature > span {
+  font-size: 10px;
+
+  font-weight: 900;
+}
+
+.feature h3 {
+  font-size: 20px;
+
+  margin-bottom: 8px;
+}
+
+.feature p {
+  color: #666;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+
+/* ========================================
+   REVIEWS
+======================================== */
+
+.reviews-section {
+  background: #111;
+
+  color: #fff;
+}
+
+.review-heading p {
+  color: #999;
+}
+
+.reviews-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 18px;
+}
+
+.review-card {
+  border: 1px solid #333;
+
+  padding: 35px;
+
+  min-height: 280px;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+.review-card p {
+  font-size: 18px;
+
+  line-height: 1.5;
+
+  color: #dedede;
+
+  margin: 30px 0;
+
+  flex: 1;
+}
+
+.review-card strong {
+  font-size: 10px;
+
+  letter-spacing: 1px;
+}
+
+
+/* ========================================
+   FAQ
+======================================== */
+
+.faq-container {
+  max-width: 900px;
+}
+
+.faq-list {
+  border-top: 1px solid #ddd;
+}
+
+.faq-item {
+  border-bottom: 1px solid #ddd;
+}
+
+.faq-question {
+  width: 100%;
+
+  border: none;
+
+  background: transparent;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 27px 0;
+
+  text-align: left;
+}
+
+.faq-title {
+  font-size: 16px;
+
+  font-weight: 700;
+}
+
+.faq-icon {
+  font-size: 22px;
+
+  font-weight: 300;
+
+  margin-left: 20px;
+}
+
+.faq-answer {
+  max-height: 0;
+
+  overflow: hidden;
+
+  transition:
+    max-height
+    0.3s
+    ease;
+}
+
+.faq-answer p {
+  padding:
+    0
+    40px
+    27px
+    0;
+
+  color: #666;
+
+  line-height: 1.7;
+
+  font-size: 14px;
+}
+
+
+/* ========================================
+   CTA FINAL
+======================================== */
+
+.final-cta {
+  background: #eee;
+
+  padding: 130px 0;
+
+  text-align: center;
+}
+
+.final-cta > .container > span {
+  font-size: 10px;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+}
+
+.final-cta h2 {
+  font-size: clamp(45px, 7vw, 82px);
+
+  line-height: 0.9;
+
+  letter-spacing: -4px;
+
+  margin: 18px 0 40px;
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.footer {
+  background: #111;
+
+  color: #fff;
+
+  padding: 45px 0;
+}
+
+.footer-content {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+.footer-content > strong {
+  letter-spacing: 2px;
+}
+
+.footer-links {
+  display: flex;
+
+  gap: 25px;
+
+  font-size: 11px;
+
+  color: #aaa;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+.footer p {
+  color: #777;
+
+  font-size: 10px;
+}
+
+
+/* ========================================
+   MOBILE BUY
+======================================== */
+
+.mobile-buy-bar {
+  display: none;
+}
+
+
+/* ========================================
+   ZOOM MODAL
+======================================== */
+
+.zoom-modal {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 99999;
+
+  display: none;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background:
+    rgba(255, 255, 255, 0.97);
+
+  padding: 50px;
+}
+
+.zoom-modal.active {
+  display: flex;
+}
+
+.zoom-image-container {
+  width: 100%;
+
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: auto;
+}
+
+.zoom-image {
+  max-width: 90vw;
+
+  max-height: 88vh;
+
+  width: auto;
+
+  height: auto;
+
+  object-fit: contain;
+
+  cursor: zoom-in;
+
+  transition:
+    transform
+    0.25s
+    ease;
+}
+
+.zoom-image.zoomed {
+  transform: scale(1.7);
+
+  cursor: zoom-out;
+}
+
+.zoom-close {
+  position: fixed;
+
+  top: 25px;
+
+  right: 30px;
+
+  z-index: 10;
+
+  width: 48px;
+
+  height: 48px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #111;
+
+  color: #fff;
+
+  font-size: 28px;
+}
+
+.zoom-help {
+  position: fixed;
+
+  bottom: 25px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  padding: 9px 16px;
+
+  background: #111;
+
+  color: #fff;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+}
+
+
+/* ========================================
+   CHECKOUT OVERLAY
+======================================== */
+
+.checkout-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background:
+    rgba(0, 0, 0, 0.55);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  z-index: 99992;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.checkout-overlay.active {
+  opacity: 1;
+
+  visibility: visible;
+}
+
+
+/* ========================================
+   CHECKOUT PANEL
+======================================== */
+
+.checkout-panel {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 99993;
+
+  overflow-y: auto;
+
+  background: #f5f5f5;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transform:
+    translateY(20px);
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    transform 0.3s ease;
+}
+
+.checkout-panel.active {
+  opacity: 1;
+
+  visibility: visible;
+
+  transform:
+    translateY(0);
+}
+
+
+/* ========================================
+   CHECKOUT CONTAINER
+======================================== */
+
+.checkout-container {
+  width:
+    min(1150px, 94%);
+
+  margin:
+    40px
+    auto;
+
+  background: #fff;
+}
+
+
+/* ========================================
+   CHECKOUT HEADER
+======================================== */
+
+.checkout-header {
+  min-height: 105px;
+
+  padding: 25px 35px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  border-bottom:
+    1px solid #e4e4e4;
+}
+
+.checkout-label {
+  display: block;
+
+  margin-bottom: 6px;
+
+  font-size: 9px;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+
+  color: #777;
+}
+
+.checkout-header h2 {
+  font-size: 31px;
+
+  letter-spacing: -1.5px;
+
+  line-height: 1;
+}
+
+.checkout-close {
+  width: 44px;
+
+  height: 44px;
+
+  border:
+    1px solid #ddd;
+
+  border-radius: 50%;
+
+  background: #fff;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 26px;
+
+  transition: 0.2s ease;
+}
+
+.checkout-close:hover {
+  background: #111;
+
+  color: #fff;
+
+  border-color: #111;
+}
+
+
+/* ========================================
+   CHECKOUT GRID
+======================================== */
+
+.checkout-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.2fr)
+    minmax(320px, 0.8fr);
+}
+
+
+/* ========================================
+   CHECKOUT FORM
+======================================== */
+
+.checkout-form-wrapper {
+  padding: 40px;
+
+  border-right:
+    1px solid #e5e5e5;
+}
+
+.checkout-section {
+  padding-bottom: 35px;
+
+  margin-bottom: 35px;
+
+  border-bottom:
+    1px solid #e5e5e5;
+}
+
+.checkout-section h3 {
+  margin-bottom: 23px;
+
+  font-size: 18px;
+
+  letter-spacing: -0.5px;
+}
+
+
+/* ========================================
+   CHECKOUT FIELDS
+======================================== */
+
+.checkout-fields {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 18px;
+}
+
+.checkout-field {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.checkout-field.full {
+  grid-column: 1 / -1;
+}
+
+.checkout-field label {
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+}
+
+.checkout-field input,
+.checkout-field textarea {
+  width: 100%;
+
+  border:
+    1px solid #d6d6d6;
+
+  background: #fff;
+
+  padding: 15px 16px;
+
+  color: #111;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+.checkout-field textarea {
+  min-height: 100px;
+
+  resize: vertical;
+}
+
+.checkout-field input:focus,
+.checkout-field textarea:focus {
+  border-color: #111;
+}
+
+
+/* ========================================
+   CONTRA ENTREGA CHECKOUT
+======================================== */
+
+.cod-payment-info {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 16px;
+
+  padding: 20px;
+
+  border:
+    2px solid #138a36;
+
+  background: #f6fbf7;
+}
+
+.cod-payment-check {
+  flex: 0 0 40px;
+
+  width: 40px;
+
+  height: 40px;
+
+  border-radius: 50%;
+
+  background: #138a36;
+
+  color: #fff;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-weight: 900;
+}
+
+.cod-payment-info strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-size: 13px;
+}
+
+.cod-payment-info p {
+  margin-bottom: 4px;
+
+  font-size: 12px;
+}
+
+.cod-payment-info small {
+  color: #666;
+
+  font-size: 10px;
+}
+
+
+/* ========================================
+   CONFIRMACIÓN
+======================================== */
+
+.order-confirmation {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  margin-bottom: 22px;
+
+  cursor: pointer;
+}
+
+.order-confirmation input {
+  margin-top: 3px;
+
+  accent-color: #138a36;
+}
+
+.order-confirmation span {
+  color: #555;
+
+  font-size: 12px;
+
+  line-height: 1.6;
+}
+
+
+/* ========================================
+   CONFIRMAR PEDIDO
+======================================== */
+
+.confirm-order-button {
+  width: 100%;
+
+  min-height: 62px;
+
+  border: none;
+
+  background: #138a36;
+
+  color: #fff;
+
+  font-size: 11px;
+
+  font-weight: 900;
+
+  letter-spacing: 1.2px;
+
+  transition:
+    background
+    0.2s
+    ease;
+}
+
+.confirm-order-button:hover {
+  background: #0f6f2b;
+}
+
+.confirm-order-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+.checkout-security {
+  margin-top: 14px;
+
+  color: #777;
+
+  text-align: center;
+
+  font-size: 10px;
+}
+
+
+/* ========================================
+   CHECKOUT SUMMARY
+======================================== */
+
+.checkout-summary {
+  padding: 40px;
+
+  background: #fafafa;
+}
+
+.checkout-summary-label {
+  display: block;
+
+  margin-bottom: 25px;
+
+  font-size: 9px;
+
+  font-weight: 900;
+
+  letter-spacing: 1.5px;
+}
+
+.checkout-product {
+  display: grid;
+
+  grid-template-columns:
+    100px 1fr;
+
+  gap: 18px;
+
+  padding-bottom: 30px;
+
+  border-bottom:
+    1px solid #ddd;
+}
+
+.checkout-product-image {
+  position: relative;
+
+  background: #eee;
+}
+
+.checkout-product-image img {
+  width: 100%;
+
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+}
+
+.checkout-product-quantity {
+  position: absolute;
+
+  top: -8px;
+
+  right: -8px;
+
+  width: 25px;
+
+  height: 25px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #111;
+
+  color: #fff;
+
+  font-size: 10px;
+
+  font-weight: 900;
+}
+
+.checkout-product-info {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.checkout-product-info strong {
+  font-size: 14px;
+
+  margin-bottom: 5px;
+}
+
+.checkout-product-info span {
+  color: #777;
+
+  font-size: 11px;
+}
+
+.checkout-product-info b {
+  margin-top: auto;
+
+  color: #d60000;
+
+  font-size: 16px;
+}
+
+
+/* ========================================
+   TOTALES
+======================================== */
+
+.checkout-totals {
+  padding: 25px 0;
+
+  border-bottom:
+    1px solid #ddd;
+}
+
+.checkout-totals > div,
+.checkout-total {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+.checkout-totals > div {
+  padding: 7px 0;
+
+  font-size: 12px;
+}
+
+.checkout-free {
+  color: #138a36;
+}
+
+.checkout-total {
+  padding: 25px 0;
+}
+
+.checkout-total span {
+  font-size: 12px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+}
+
+.checkout-total strong {
+  color: #d60000;
+
+  font-size: 25px;
+}
+
+.checkout-cod-message {
+  margin-top: 10px;
+
+  padding: 20px;
+
+  background: #edf7f0;
+}
+
+.checkout-cod-message strong {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #138a36;
+
+  font-size: 10px;
+
+  letter-spacing: 1px;
+}
+
+.checkout-cod-message p {
+  color: #555;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+
+/* ========================================
+   SUCCESS
+======================================== */
+
+.order-success {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 100000;
+
+  background:
+    rgba(0, 0, 0, 0.65);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 20px;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transition: 0.3s ease;
+}
+
+.order-success.active {
+  opacity: 1;
+
+  visibility: visible;
+}
+
+.order-success-box {
+  width:
+    min(500px, 100%);
+
+  background: #fff;
+
+  padding: 45px;
+
+  text-align: center;
+}
+
+.success-check {
+  width: 55px;
+
+  height: 55px;
+
+  margin:
+    0 auto 22px;
+
+  border-radius: 50%;
+
+  background: #138a36;
+
+  color: #fff;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 22px;
+}
+
+.order-success-box > span {
+  font-size: 9px;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+}
+
+.order-success-box h2 {
+  margin: 12px 0 15px;
+
+  font-size: 32px;
+
+  line-height: 1;
+
+  letter-spacing: -1.5px;
+}
+
+.order-success-box > p {
+  color: #666;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+.success-summary {
+  margin: 30px 0;
+
+  border-top:
+    1px solid #ddd;
+}
+
+.success-summary > div {
+  padding: 13px 0;
+
+  border-bottom:
+    1px solid #ddd;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  text-align: left;
+
+  font-size: 11px;
+}
+
+.success-summary span {
+  color: #777;
+}
+
+.success-total {
+  color: #d60000;
+}
+
+.order-success-box button {
+  width: 100%;
+
+  min-height: 55px;
+
+  border: none;
+
+  background: #111;
+
+  color: #fff;
+
+  font-size: 10px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+}
+
+
+/* ========================================
+   ANIMACIONES
+======================================== */
+
+@keyframes codPulseBar {
+
+  0%,
+  100% {
+    transform:
+      scale(1);
+  }
+
+  50% {
+    transform:
+      scale(1.018);
+  }
+
+}
+
+
+@keyframes mainCodPulse {
+
+  0%,
+  100% {
+    transform:
+      scale(1);
+  }
+
+  50% {
+    transform:
+      scale(1.015);
+  }
+
+}
+
+
+@keyframes headerCodPulse {
+
+  0%,
+  100% {
+    transform:
+      scale(1);
+  }
+
+  50% {
+    transform:
+      scale(1.035);
+  }
+
+}
+
+
+@keyframes codShine {
+
+  0% {
+    left: -120%;
+  }
+
+  45% {
+    left: 140%;
+  }
+
+  100% {
+    left: 140%;
+  }
+
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 950px) {
+
+  .product-grid {
+    grid-template-columns: 1fr;
+
+    gap: 45px;
+  }
+
+  .product-info {
+    position: static;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .benefit-card {
+    min-height: 230px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .zoom-button {
+    display: none;
+  }
+
+  .zoom-modal {
+    display: none !important;
+  }
+
+}
+
+
+/* ========================================
+   CHECKOUT TABLET
+======================================== */
+
+@media (max-width: 800px) {
+
+  .checkout-container {
+    width: 100%;
+
+    margin: 0;
+
+    min-height: 100vh;
+  }
+
+  .checkout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-summary {
+    order: -1;
+
+    padding: 25px 20px;
+
+    border-bottom:
+      1px solid #ddd;
+  }
+
+  .checkout-form-wrapper {
+    padding: 30px 20px;
+
+    border-right: none;
+  }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+  body {
+    padding-bottom: 76px;
+  }
+
+  .container {
+    width: 92%;
+  }
+
+  .section {
+    padding: 75px 0;
+  }
+
+
+  /* HEADER */
+
+  .header-content {
+    min-height: 62px;
+
+    gap: 10px;
+  }
+
+  .logo-image {
+    height: 30px;
+  }
+
+  .header-button {
+    padding: 10px 11px;
+
+    font-size: 7.5px;
+
+    letter-spacing: 0.5px;
+
+    max-width: 190px;
+  }
+
+
+  /* PRODUCT */
+
+  .product-section {
+    padding: 0 0 70px;
+  }
+
+  .product-grid {
+    width: 100%;
+
+    gap: 30px;
+  }
+
+  .product-gallery {
+    width: 100%;
+  }
+
+  .product-info {
+    width: 92%;
+
+    margin: 0 auto;
+  }
+
+  .main-product-image,
+  .main-product-video {
+    aspect-ratio: 1 / 1.1;
+  }
+
+
+  /* MINIATURAS */
+
+  .product-thumbnails {
+    padding-left: 4%;
+
+    padding-right: 4%;
+  }
+
+  .thumbnail {
+    flex: 0 0 78px;
+  }
+
+  .video-play-icon {
+    width: 32px;
+
+    height: 32px;
+
+    font-size: 12px;
+  }
+
+
+  /* ========================================
+     BOTÓN VERDE BAJO MINIATURAS
+  ======================================== */
+
+  .gallery-cod-button-row {
+    margin-top: 16px;
+
+    padding:
+      0
+      4%;
+  }
+
+  .gallery-cod-button {
+    width: 100%;
+
+    min-height: 58px;
+
+    padding:
+      12px
+      15px;
+
+    border-radius: 999px;
+
+    gap: 8px;
+
+    font-size: 10px;
+
+    line-height: 1.25;
+
+    letter-spacing: 0.2px;
+  }
+
+  .gallery-cod-icon {
+    width: 23px;
+
+    height: 23px;
+
+    flex:
+      0
+      0
+      23px;
+
+    font-size: 12px;
+  }
+
+  .gallery-cod-text {
+    white-space: normal;
+  }
+
+
+  /* PRODUCT INFO */
+
+  .product-info h1 {
+    font-size: 42px;
+
+    letter-spacing: -2px;
+  }
+
+  .current-price {
+    font-size: 24px;
+  }
+
+
+  /* CTA PRINCIPAL */
+
+  .cod-buy-button {
+    min-height: 64px;
+  }
+
+  .cod-buy-button strong {
+    font-size: 11px;
+  }
+
+  .cod-buy-button span {
+    font-size: 9px;
+  }
+
+
+  /* PAYMENT INFO */
+
+  .payment-info {
+    display: grid;
+
+    grid-template-columns:
+      1fr 1fr;
+
+    gap: 10px;
+  }
+
+
+  /* BENEFICIOS */
+
+  .section-heading h2,
+  .features-title h2 {
+    letter-spacing: -2px;
+  }
+
+  .benefit-card {
+    padding: 30px;
+
+    min-height: 220px;
+  }
+
+
+  /* BANNER */
+
+  .banner-section {
+    min-height: 600px;
+  }
+
+  .banner-content {
+    padding-bottom: 50px;
+  }
+
+  .banner-content h2 {
+    letter-spacing: -2px;
+  }
+
+  .banner-cod-button,
+  .final-cod-button {
+    width: 100%;
+  }
+
+
+  /* FINAL */
+
+  .final-cta {
+    padding: 90px 0;
+  }
+
+  .final-cta h2 {
+    letter-spacing: -2px;
+  }
+
+
+  /* FOOTER */
+
+  .footer-content {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+  }
+
+
+  /* ========================================
+     MOBILE STICKY
+  ======================================== */
+
+  .mobile-buy-bar {
+    position: fixed;
+
+    bottom: 0;
+
+    left: 0;
+
+    z-index: 9999;
+
+    width: 100%;
+
+    height: 76px;
+
+    background: #fff;
+
+    border-top:
+      1px solid #ddd;
+
+    box-shadow:
+      0 -8px 30px
+      rgba(0, 0, 0, 0.08);
+
+    padding: 10px 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+  }
+
+  .mobile-price {
+    display: flex;
+
+    flex-direction: column;
+
+    flex-shrink: 0;
+  }
+
+  .mobile-price small {
+    font-size: 8px;
+
+    color: #777;
+  }
+
+  .mobile-price strong {
+    font-size: 16px;
+
+    color: #d60000;
+  }
+
+  .mobile-buy-bar button {
+    flex: 1;
+
+    max-width: 220px;
+
+    height: 52px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background: #138a36;
+
+    color: #fff;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 0.7px;
   }
 
 
   /* CHECKOUT */
 
-  const checkoutQuantity =
-    document.querySelector(
-      "#checkout-product-quantity"
+  .checkout-header {
+    min-height: 85px;
+
+    padding: 20px;
+  }
+
+  .checkout-header h2 {
+    font-size: 25px;
+  }
+
+  .checkout-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-field.full {
+    grid-column: auto;
+  }
+
+  .cod-payment-info {
+    padding: 17px;
+  }
+
+  .checkout-product {
+    grid-template-columns:
+      90px 1fr;
+  }
+
+
+  /* SUCCESS */
+
+  .order-success-box {
+    padding: 35px 22px;
+  }
+
+}
+
+
+/* ========================================
+   ACCESIBILIDAD
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gallery-cod-button,
+  .gallery-cod-button::after,
+  .header-button,
+  .header-button::after,
+  .cod-buy-button {
+    animation: none;
+  }
+
+}
+/* ========================================
+   BOTÓN PRINCIPAL CONTRA ENTREGA VERDE
+======================================== */
+
+.cod-buy-button {
+  position: relative;
+
+  width: 100%;
+  min-height: 70px;
+
+  margin: 10px 0 22px;
+
+  padding: 13px 24px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background: #138A36;
+  color: #ffffff;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 3px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 10px 30px
+    rgba(19, 138, 54, 0.28);
+
+  animation:
+    codMainPulse 1.8s ease-in-out infinite;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+/* TEXTO PRINCIPAL */
+
+.cod-buy-button strong {
+  position: relative;
+  z-index: 2;
+
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 900;
+
+  letter-spacing: 1.3px;
+}
+
+
+/* TEXTO SECUNDARIO */
+
+.cod-buy-button span {
+  position: relative;
+  z-index: 2;
+
+  color: rgba(255, 255, 255, 0.85);
+
+  font-size: 10px;
+  font-weight: 600;
+}
+
+
+/* HOVER */
+
+.cod-buy-button:hover {
+  background: #0F6F2B;
+
+  color: #ffffff;
+
+  transform: scale(1.015);
+
+  box-shadow:
+    0 13px 35px
+    rgba(19, 138, 54, 0.36);
+}
+
+
+.cod-buy-button:hover span {
+  color: #ffffff;
+}
+
+
+/* ========================================
+   EFECTO DE BRILLO
+======================================== */
+
+.cod-buy-button::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -110%;
+
+  width: 45%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      110deg,
+      transparent,
+      rgba(255, 255, 255, 0.38),
+      transparent
     );
 
-  const checkoutProductPrice =
-    document.querySelector(
-      "#checkout-product-price"
-    );
+  transform: skewX(-20deg);
 
-  const checkoutSubtotal =
-    document.querySelector(
-      "#checkout-subtotal"
-    );
+  animation:
+    codMainShine 2.7s ease-in-out infinite;
 
-  const checkoutTotal =
-    document.querySelector(
-      "#checkout-total"
-    );
+  pointer-events: none;
+}
 
 
-  if (checkoutQuantity) {
+/* ========================================
+   MOVIMIENTO SUAVE
+======================================== */
 
-    checkoutQuantity.textContent =
-      quantity;
+@keyframes codMainPulse {
 
+  0%,
+  100% {
+    transform: scale(1);
   }
 
-
-  if (checkoutProductPrice) {
-
-    checkoutProductPrice.textContent =
-      formatPrice(total);
-
-  }
-
-
-  if (checkoutSubtotal) {
-
-    checkoutSubtotal.textContent =
-      formatPrice(total);
-
-  }
-
-
-  if (checkoutTotal) {
-
-    checkoutTotal.textContent =
-      formatPrice(total);
-
-  }
-
-
-  /* BOTÓN MENOS */
-
-  if (decreaseQuantity) {
-
-    decreaseQuantity.disabled =
-      quantity <= 1;
-
-  }
-
-
-  /* BOTÓN MÁS */
-
-  if (increaseQuantity) {
-
-    increaseQuantity.disabled =
-      quantity >=
-      MAX_QUANTITY;
-
+  50% {
+    transform: scale(1.018);
   }
 
 }
 
 
-/* =========================================================
-   AUMENTAR
-========================================================= */
+@keyframes codMainShine {
 
-if (increaseQuantity) {
+  0% {
+    left: -110%;
+  }
 
-  increaseQuantity.addEventListener(
-    "click",
-    () => {
+  45% {
+    left: 140%;
+  }
 
-      if (
-        quantity <
-        MAX_QUANTITY
-      ) {
-
-        quantity++;
-
-        updateQuantity();
-
-      }
-
-    }
-  );
+  100% {
+    left: 140%;
+  }
 
 }
 
 
-/* =========================================================
-   DISMINUIR
-========================================================= */
+/* ========================================
+   MOBILE
+======================================== */
 
-if (decreaseQuantity) {
+@media (max-width: 600px) {
 
-  decreaseQuantity.addEventListener(
-    "click",
-    () => {
+  .cod-buy-button {
+    min-height: 64px;
 
-      if (quantity > 1) {
+    padding: 11px 18px;
 
-        quantity--;
-
-        updateQuantity();
-
-      }
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   CHECKOUT CONTRA ENTREGA
-========================================================= */
-
-const checkoutPanel =
-  document.querySelector(
-    "#checkout-panel"
-  );
-
-const checkoutOverlay =
-  document.querySelector(
-    "#checkout-overlay"
-  );
-
-const checkoutClose =
-  document.querySelector(
-    "#checkout-close"
-  );
-
-
-/* =========================================================
-   ABRIR CHECKOUT
-========================================================= */
-
-function openCheckout() {
-
-  if (!checkoutPanel) {
-    return;
+    border-radius: 999px;
   }
 
 
-  updateQuantity();
+  .cod-buy-button strong {
+    font-size: 10.5px;
 
-
-  checkoutPanel.classList.add(
-    "active"
-  );
-
-
-  if (checkoutOverlay) {
-
-    checkoutOverlay.classList.add(
-      "active"
-    );
-
+    letter-spacing: 0.8px;
   }
 
 
-  checkoutPanel.setAttribute(
-    "aria-hidden",
-    "false"
-  );
-
-
-  document.body.style.overflow =
-    "hidden";
-
-
-  checkoutPanel.scrollTop =
-    0;
-
-}
-
-
-/* =========================================================
-   CERRAR CHECKOUT
-========================================================= */
-
-function closeCheckout() {
-
-  if (!checkoutPanel) {
-    return;
+  .cod-buy-button span {
+    font-size: 9px;
   }
 
-
-  checkoutPanel.classList.remove(
-    "active"
-  );
+}
 
 
-  if (checkoutOverlay) {
+/* ========================================
+   ACCESIBILIDAD
+======================================== */
 
-    checkoutOverlay.classList.remove(
-      "active"
-    );
+@media (prefers-reduced-motion: reduce) {
 
+  .cod-buy-button,
+  .cod-buy-button::after {
+    animation: none;
   }
 
-
-  checkoutPanel.setAttribute(
-    "aria-hidden",
-    "true"
-  );
-
-
-  document.body.style.overflow =
-    "";
-
 }
-
-
-/* X */
-
-if (checkoutClose) {
-
-  checkoutClose.addEventListener(
-    "click",
-    closeCheckout
-  );
-
-}
-
-
-/* OVERLAY */
-
-if (checkoutOverlay) {
-
-  checkoutOverlay.addEventListener(
-    "click",
-    closeCheckout
-  );
-
-}
-
-
-/* =========================================================
-   TODOS LOS BOTONES CONTRA ENTREGA
-========================================================= */
-
-const codButtons = [
-
-  "#header-cod-button",
-
-  "#gallery-cod-button",
-
-  "#cod-buy-button",
-
-  "#banner-cod-button",
-
-  "#final-cod-button",
-
-  "#mobile-cod-button"
-
-];
-
-
-codButtons.forEach(
-  (selector) => {
-
-    const button =
-      document.querySelector(
-        selector
-      );
-
-
-    if (button) {
-
-      button.addEventListener(
-        "click",
-        openCheckout
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   FORMULARIO
-========================================================= */
-
-const checkoutForm =
-  document.querySelector(
-    "#checkout-form"
-  );
-
-const confirmOrderButton =
-  document.querySelector(
-    "#confirm-order-button"
-  );
-
-const phoneInput =
-  document.querySelector(
-    "#customer-phone"
-  );
-
-
-/* =========================================================
-   LIMPIAR CELULAR MIENTRAS ESCRIBE
-========================================================= */
-
-if (phoneInput) {
-
-  phoneInput.addEventListener(
-    "input",
-    () => {
-
-      phoneInput.value =
-        phoneInput.value
-          .replace(
-            /\D/g,
-            ""
-          )
-          .slice(
-            0,
-            10
-          );
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   SUCCESS
-========================================================= */
-
-const orderSuccess =
-  document.querySelector(
-    "#order-success"
-  );
-
-const successTotal =
-  document.querySelector(
-    "#success-total"
-  );
-
-const successOrderId =
-  document.querySelector(
-    "#success-order-id"
-  );
-
-const successClose =
-  document.querySelector(
-    "#success-close"
-  );
-
-
-/* =========================================================
-   ENVIAR PEDIDO CONTRA ENTREGA
-========================================================= */
-
-if (checkoutForm) {
-
-  checkoutForm.addEventListener(
-    "submit",
-    async (event) => {
-
-      event.preventDefault();
-
-
-      /* =================================
-         VALIDACIÓN HTML
-      ================================= */
-
-      if (
-        !checkoutForm.checkValidity()
-      ) {
-
-        checkoutForm.reportValidity();
-
-        return;
-
-      }
-
-
-      /* =================================
-         LEER FORMULARIO
-      ================================= */
-
-      const formData =
-        new FormData(
-          checkoutForm
-        );
-
-
-      /* =================================
-         VALIDAR CELULAR COLOMBIANO
-      ================================= */
-
-      const phone =
-        String(
-          formData.get(
-            "phone"
-          ) || ""
-        )
-          .replace(
-            /\D/g,
-            ""
-          )
-          .trim();
-
-
-      if (
-        !/^3\d{9}$/.test(
-          phone
-        )
-      ) {
-
-        alert(
-          "Ingresa un número de celular colombiano válido de 10 dígitos que comience por 3."
-        );
-
-
-        if (phoneInput) {
-
-          phoneInput.focus();
-
-        }
-
-
-        return;
-
-      }
-
-
-      /* =================================
-         VALIDAR CANTIDAD
-      ================================= */
-
-      if (
-        quantity < 1 ||
-        quantity >
-          MAX_QUANTITY
-      ) {
-
-        alert(
-          "La cantidad seleccionada no es válida."
-        );
-
-        return;
-
-      }
-
-
-      /* =================================
-         EVITAR DOBLE PEDIDO
-      ================================= */
-
-      if (confirmOrderButton) {
-
-        confirmOrderButton.disabled =
-          true;
-
-        confirmOrderButton.textContent =
-          "ENVIANDO PEDIDO...";
-
-      }
-
-
-      try {
-
-
-        /* =================================
-           ARMAR PEDIDO
-        ================================= */
-
-        const orderData = {
-
-          cantidad:
-            quantity,
-
-          cliente: {
-
-            nombre:
-              String(
-                formData.get(
-                  "name"
-                ) || ""
-              ).trim(),
-
-            celular:
-              phone,
-
-            email:
-              String(
-                formData.get(
-                  "email"
-                ) || ""
-              ).trim(),
-
-            departamento:
-              String(
-                formData.get(
-                  "department"
-                ) || ""
-              ).trim(),
-
-            ciudad:
-              String(
-                formData.get(
-                  "city"
-                ) || ""
-              ).trim(),
-
-            direccion:
-              String(
-                formData.get(
-                  "address"
-                ) || ""
-              ).trim(),
-
-            barrio:
-              String(
-                formData.get(
-                  "neighborhood"
-                ) || ""
-              ).trim(),
-
-            referencia:
-              String(
-                formData.get(
-                  "reference"
-                ) || ""
-              ).trim(),
-
-            indicaciones:
-              String(
-                formData.get(
-                  "notes"
-                ) || ""
-              ).trim()
-
-          }
-
-        };
-
-
-        /* =================================
-           ENVIAR A API DE VERCEL
-        ================================= */
-
-        const response =
-          await fetch(
-            "/api/pedido-contra-entrega",
-            {
-
-              method:
-                "POST",
-
-              headers: {
-
-                "Content-Type":
-                  "application/json"
-
-              },
-
-              body:
-                JSON.stringify(
-                  orderData
-                )
-
-            }
-          );
-
-
-        /* =================================
-           LEER RESPUESTA
-        ================================= */
-
-        let result;
-
-
-        try {
-
-          result =
-            await response.json();
-
-        } catch (error) {
-
-          throw new Error(
-            "El servidor devolvió una respuesta inválida."
-          );
-
-        }
-
-
-        /* =================================
-           ERROR
-        ================================= */
-
-        if (
-          !response.ok ||
-          !result.success
-        ) {
-
-          throw new Error(
-            result.message ||
-            "No fue posible registrar el pedido."
-          );
-
-        }
-
-
-        /* =================================
-           PEDIDO EXITOSO
-        ================================= */
-
-        closeCheckout();
-
-
-        if (successOrderId) {
-
-          successOrderId.textContent =
-            result.orderId ||
-            "Pedido confirmado";
-
-        }
-
-
-        if (successTotal) {
-
-          successTotal.textContent =
-            formatPrice(
-              result.total ||
-              product.price *
-                quantity
-            );
-
-        }
-
-
-        if (orderSuccess) {
-
-          orderSuccess.classList.add(
-            "active"
-          );
-
-        }
-
-
-        document.body.style.overflow =
-          "hidden";
-
-
-      } catch (error) {
-
-
-        console.error(
-          "ERROR PEDIDO:",
-          error
-        );
-
-
-        alert(
-          error.message ||
-          "No pudimos registrar tu pedido en este momento. Por favor intenta nuevamente."
-        );
-
-
-      } finally {
-
-
-        if (confirmOrderButton) {
-
-          confirmOrderButton.disabled =
-            false;
-
-          confirmOrderButton.textContent =
-            "CONFIRMAR PEDIDO CONTRA ENTREGA";
-
-        }
-
-      }
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   CERRAR CONFIRMACIÓN
-========================================================= */
-
-if (successClose) {
-
-  successClose.addEventListener(
-    "click",
-    () => {
-
-      if (orderSuccess) {
-
-        orderSuccess.classList.remove(
-          "active"
-        );
-
-      }
-
-
-      document.body.style.overflow =
-        "";
-
-
-      /* LIMPIAR FORMULARIO */
-
-      if (checkoutForm) {
-
-        checkoutForm.reset();
-
-      }
-
-
-      /* VOLVER CANTIDAD A 1 */
-
-      quantity =
-        1;
-
-      updateQuantity();
-
-
-      /* VOLVER ARRIBA */
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   FAQ
-========================================================= */
-
-const faqQuestions =
-  document.querySelectorAll(
-    ".faq-question"
-  );
-
-
-faqQuestions.forEach(
-  (question) => {
-
-    question.addEventListener(
-      "click",
-      () => {
-
-        const answer =
-          question.nextElementSibling;
-
-        const icon =
-          question.querySelector(
-            ".faq-icon"
-          );
-
-        const isOpen =
-          question.classList.contains(
-            "active"
-          );
-
-
-        /* CERRAR TODAS */
-
-        faqQuestions.forEach(
-          (item) => {
-
-            item.classList.remove(
-              "active"
-            );
-
-
-            const itemIcon =
-              item.querySelector(
-                ".faq-icon"
-              );
-
-            const itemAnswer =
-              item.nextElementSibling;
-
-
-            if (itemIcon) {
-
-              itemIcon.textContent =
-                "+";
-
-            }
-
-
-            if (itemAnswer) {
-
-              itemAnswer.style.maxHeight =
-                null;
-
-            }
-
-          }
-        );
-
-
-        /* ABRIR SELECCIONADA */
-
-        if (!isOpen) {
-
-          question.classList.add(
-            "active"
-          );
-
-
-          if (icon) {
-
-            icon.textContent =
-              "−";
-
-          }
-
-
-          if (answer) {
-
-            answer.style.maxHeight =
-              answer.scrollHeight +
-              "px";
-
-          }
-
-        }
-
-      }
-    );
-
-  }
-);
-
-
-/* =========================================================
-   TECLA ESC
-========================================================= */
-
-document.addEventListener(
-  "keydown",
-  (event) => {
-
-    if (
-      event.key !==
-      "Escape"
-    ) {
-
-      return;
-
-    }
-
-
-    /* CHECKOUT */
-
-    if (
-      checkoutPanel &&
-      checkoutPanel.classList.contains(
-        "active"
-      )
-    ) {
-
-      closeCheckout();
-
-    }
-
-
-    /* ZOOM */
-
-    if (
-      zoomModal &&
-      zoomModal.classList.contains(
-        "active"
-      )
-    ) {
-
-      closeZoom();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   INICIAR LANDING
-========================================================= */
-
-updateQuantity();
-
-
-console.log(
-  "RS Imports · Landing contra entrega cargada correctamente"
-);
