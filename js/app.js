@@ -14,6 +14,8 @@ const product = {
   price: 129900
 };
 
+const MAX_QUANTITY = 10;
+
 let quantity = 1;
 
 
@@ -22,11 +24,16 @@ let quantity = 1;
 ========================================================= */
 
 function formatPrice(value) {
-  return new Intl.NumberFormat("es-CO", {
-    style: "currency",
-    currency: "COP",
-    maximumFractionDigits: 0
-  }).format(value);
+
+  return new Intl.NumberFormat(
+    "es-CO",
+    {
+      style: "currency",
+      currency: "COP",
+      maximumFractionDigits: 0
+    }
+  ).format(value);
+
 }
 
 
@@ -35,19 +42,29 @@ function formatPrice(value) {
 ========================================================= */
 
 const mainProductImage =
-  document.querySelector("#main-product-image");
+  document.querySelector(
+    "#main-product-image"
+  );
 
 const mainProductVideo =
-  document.querySelector("#main-product-video");
+  document.querySelector(
+    "#main-product-video"
+  );
 
 const mediaThumbnails =
-  document.querySelectorAll(".thumbnail");
+  document.querySelectorAll(
+    ".thumbnail"
+  );
 
 const videoThumbnailPreview =
-  document.querySelector(".video-thumbnail-preview");
+  document.querySelector(
+    ".video-thumbnail-preview"
+  );
 
 
-/* FRAME DEL VIDEO EN MINIATURA */
+/* =========================================================
+   FRAME MINIATURA VIDEO
+========================================================= */
 
 if (videoThumbnailPreview) {
 
@@ -55,8 +72,13 @@ if (videoThumbnailPreview) {
     "loadedmetadata",
     () => {
 
-      if (videoThumbnailPreview.duration > 1) {
-        videoThumbnailPreview.currentTime = 0.5;
+      if (
+        videoThumbnailPreview.duration > 1
+      ) {
+
+        videoThumbnailPreview.currentTime =
+          0.5;
+
       }
 
     }
@@ -70,145 +92,177 @@ if (videoThumbnailPreview) {
 ========================================================= */
 
 const zoomButton =
-  document.querySelector("#zoom-button");
+  document.querySelector(
+    "#zoom-button"
+  );
 
 const zoomModal =
-  document.querySelector("#zoom-modal");
+  document.querySelector(
+    "#zoom-modal"
+  );
 
 const zoomImage =
-  document.querySelector("#zoom-image");
+  document.querySelector(
+    "#zoom-image"
+  );
 
 const zoomClose =
-  document.querySelector("#zoom-close");
+  document.querySelector(
+    "#zoom-close"
+  );
 
 
 /* =========================================================
    CAMBIAR FOTO / VIDEO
 ========================================================= */
 
-mediaThumbnails.forEach((thumbnail) => {
+mediaThumbnails.forEach(
+  (thumbnail) => {
 
-  thumbnail.addEventListener("click", () => {
+    thumbnail.addEventListener(
+      "click",
+      () => {
 
-    const type =
-      thumbnail.dataset.type;
+        const type =
+          thumbnail.dataset.type;
 
-    const media =
-      thumbnail.dataset.media;
-
-
-    /* QUITAR ACTIVO */
-
-    mediaThumbnails.forEach((item) => {
-      item.classList.remove("active");
-    });
+        const media =
+          thumbnail.dataset.media;
 
 
-    thumbnail.classList.add("active");
+        /* QUITAR ACTIVO */
+
+        mediaThumbnails.forEach(
+          (item) => {
+
+            item.classList.remove(
+              "active"
+            );
+
+          }
+        );
 
 
-    /* =========================
-       MOSTRAR IMAGEN
-    ========================= */
+        thumbnail.classList.add(
+          "active"
+        );
 
-    if (type === "image") {
 
-      if (mainProductVideo) {
+        /* =================================
+           MOSTRAR IMAGEN
+        ================================= */
 
-        mainProductVideo.pause();
+        if (type === "image") {
 
-        mainProductVideo.style.display =
-          "none";
+          if (mainProductVideo) {
+
+            mainProductVideo.pause();
+
+            mainProductVideo.style.display =
+              "none";
+
+          }
+
+
+          if (mainProductImage) {
+
+            mainProductImage.style.display =
+              "block";
+
+            mainProductImage.style.opacity =
+              "0";
+
+
+            setTimeout(
+              () => {
+
+                mainProductImage.src =
+                  media;
+
+                mainProductImage.style.opacity =
+                  "1";
+
+              },
+              120
+            );
+
+          }
+
+
+          if (zoomButton) {
+
+            zoomButton.style.display =
+              "";
+
+          }
+
+        }
+
+
+        /* =================================
+           MOSTRAR VIDEO
+        ================================= */
+
+        if (type === "video") {
+
+          if (mainProductImage) {
+
+            mainProductImage.style.display =
+              "none";
+
+          }
+
+
+          if (mainProductVideo) {
+
+            mainProductVideo.style.display =
+              "block";
+
+          }
+
+
+          if (zoomButton) {
+
+            zoomButton.style.display =
+              "none";
+
+          }
+
+
+          const source =
+            mainProductVideo
+              ?.querySelector(
+                "source"
+              );
+
+
+          if (
+            source &&
+            source.getAttribute("src") !==
+              media
+          ) {
+
+            source.src =
+              media;
+
+            mainProductVideo.load();
+
+          }
+
+
+          mainProductVideo
+            ?.play()
+            .catch(
+              () => {}
+            );
+
+        }
 
       }
+    );
 
-
-      if (mainProductImage) {
-
-        mainProductImage.style.display =
-          "block";
-
-        mainProductImage.style.opacity =
-          "0";
-
-
-        setTimeout(() => {
-
-          mainProductImage.src = media;
-
-          mainProductImage.style.opacity =
-            "1";
-
-        }, 120);
-
-      }
-
-
-      if (zoomButton) {
-
-        zoomButton.style.display = "";
-
-      }
-
-    }
-
-
-    /* =========================
-       MOSTRAR VIDEO
-    ========================= */
-
-    if (type === "video") {
-
-      if (mainProductImage) {
-
-        mainProductImage.style.display =
-          "none";
-
-      }
-
-
-      if (mainProductVideo) {
-
-        mainProductVideo.style.display =
-          "block";
-
-      }
-
-
-      if (zoomButton) {
-
-        zoomButton.style.display =
-          "none";
-
-      }
-
-
-      const source =
-        mainProductVideo
-          ?.querySelector("source");
-
-
-      if (
-        source &&
-        source.getAttribute("src") !== media
-      ) {
-
-        source.src = media;
-
-        mainProductVideo.load();
-
-      }
-
-
-      mainProductVideo
-        ?.play()
-        .catch(() => {});
-
-    }
-
-  });
-
-});
+  }
+);
 
 
 /* =========================================================
@@ -259,7 +313,9 @@ if (
 }
 
 
-/* CLICK PARA AMPLIAR MÁS */
+/* =========================================================
+   CLICK PARA AMPLIAR MÁS
+========================================================= */
 
 if (zoomImage) {
 
@@ -277,7 +333,9 @@ if (zoomImage) {
 }
 
 
-/* CERRAR ZOOM */
+/* =========================================================
+   CERRAR ZOOM
+========================================================= */
 
 function closeZoom() {
 
@@ -328,7 +386,10 @@ if (zoomModal) {
     "click",
     (event) => {
 
-      if (event.target === zoomModal) {
+      if (
+        event.target ===
+        zoomModal
+      ) {
 
         closeZoom();
 
@@ -345,7 +406,9 @@ if (zoomModal) {
 ========================================================= */
 
 const quantityText =
-  document.querySelector("#quantity");
+  document.querySelector(
+    "#quantity"
+  );
 
 const increaseQuantity =
   document.querySelector(
@@ -358,10 +421,15 @@ const decreaseQuantity =
   );
 
 
+/* =========================================================
+   ACTUALIZAR CANTIDAD Y TOTAL
+========================================================= */
+
 function updateQuantity() {
 
   const total =
-    product.price * quantity;
+    product.price *
+    quantity;
 
 
   /* PDP */
@@ -405,11 +473,6 @@ function updateQuantity() {
   }
 
 
-  /*
-    Aquí mostramos el total correspondiente
-    a la cantidad seleccionada.
-  */
-
   if (checkoutProductPrice) {
 
     checkoutProductPrice.textContent =
@@ -433,10 +496,33 @@ function updateQuantity() {
 
   }
 
+
+  /* BOTÓN MENOS */
+
+  if (decreaseQuantity) {
+
+    decreaseQuantity.disabled =
+      quantity <= 1;
+
+  }
+
+
+  /* BOTÓN MÁS */
+
+  if (increaseQuantity) {
+
+    increaseQuantity.disabled =
+      quantity >=
+      MAX_QUANTITY;
+
+  }
+
 }
 
 
-/* AUMENTAR */
+/* =========================================================
+   AUMENTAR
+========================================================= */
 
 if (increaseQuantity) {
 
@@ -444,9 +530,16 @@ if (increaseQuantity) {
     "click",
     () => {
 
-      quantity++;
+      if (
+        quantity <
+        MAX_QUANTITY
+      ) {
 
-      updateQuantity();
+        quantity++;
+
+        updateQuantity();
+
+      }
 
     }
   );
@@ -454,7 +547,9 @@ if (increaseQuantity) {
 }
 
 
-/* DISMINUIR */
+/* =========================================================
+   DISMINUIR
+========================================================= */
 
 if (decreaseQuantity) {
 
@@ -534,12 +629,8 @@ function openCheckout() {
     "hidden";
 
 
-  /*
-    Siempre que abra el checkout,
-    lo mostramos desde arriba.
-  */
-
-  checkoutPanel.scrollTop = 0;
+  checkoutPanel.scrollTop =
+    0;
 
 }
 
@@ -626,22 +717,26 @@ const codButtons = [
 ];
 
 
-codButtons.forEach((selector) => {
+codButtons.forEach(
+  (selector) => {
 
-  const button =
-    document.querySelector(selector);
+    const button =
+      document.querySelector(
+        selector
+      );
 
 
-  if (button) {
+    if (button) {
 
-    button.addEventListener(
-      "click",
-      openCheckout
-    );
+      button.addEventListener(
+        "click",
+        openCheckout
+      );
+
+    }
 
   }
-
-});
+);
 
 
 /* =========================================================
@@ -657,6 +752,38 @@ const confirmOrderButton =
   document.querySelector(
     "#confirm-order-button"
   );
+
+const phoneInput =
+  document.querySelector(
+    "#customer-phone"
+  );
+
+
+/* =========================================================
+   LIMPIAR CELULAR MIENTRAS ESCRIBE
+========================================================= */
+
+if (phoneInput) {
+
+  phoneInput.addEventListener(
+    "input",
+    () => {
+
+      phoneInput.value =
+        phoneInput.value
+          .replace(
+            /\D/g,
+            ""
+          )
+          .slice(
+            0,
+            10
+          );
+
+    }
+  );
+
+}
 
 
 /* =========================================================
@@ -697,9 +824,9 @@ if (checkoutForm) {
       event.preventDefault();
 
 
-      /* =========================
-         VALIDAR FORMULARIO
-      ========================= */
+      /* =================================
+         VALIDACIÓN HTML
+      ================================= */
 
       if (
         !checkoutForm.checkValidity()
@@ -712,9 +839,78 @@ if (checkoutForm) {
       }
 
 
-      /* =========================
+      /* =================================
+         LEER FORMULARIO
+      ================================= */
+
+      const formData =
+        new FormData(
+          checkoutForm
+        );
+
+
+      /* =================================
+         VALIDAR CELULAR COLOMBIANO
+      ================================= */
+
+      const phone =
+        String(
+          formData.get(
+            "phone"
+          ) || ""
+        )
+          .replace(
+            /\D/g,
+            ""
+          )
+          .trim();
+
+
+      if (
+        !/^3\d{9}$/.test(
+          phone
+        )
+      ) {
+
+        alert(
+          "Ingresa un número de celular colombiano válido de 10 dígitos que comience por 3."
+        );
+
+
+        if (phoneInput) {
+
+          phoneInput.focus();
+
+        }
+
+
+        return;
+
+      }
+
+
+      /* =================================
+         VALIDAR CANTIDAD
+      ================================= */
+
+      if (
+        quantity < 1 ||
+        quantity >
+          MAX_QUANTITY
+      ) {
+
+        alert(
+          "La cantidad seleccionada no es válida."
+        );
+
+        return;
+
+      }
+
+
+      /* =================================
          EVITAR DOBLE PEDIDO
-      ========================= */
+      ================================= */
 
       if (confirmOrderButton) {
 
@@ -730,15 +926,9 @@ if (checkoutForm) {
       try {
 
 
-        /* =========================
-           DATOS FORMULARIO
-        ========================= */
-
-        const formData =
-          new FormData(
-            checkoutForm
-          );
-
+        /* =================================
+           ARMAR PEDIDO
+        ================================= */
 
         const orderData = {
 
@@ -748,53 +938,80 @@ if (checkoutForm) {
           cliente: {
 
             nombre:
-              formData.get("name"),
+              String(
+                formData.get(
+                  "name"
+                ) || ""
+              ).trim(),
 
             celular:
-              formData.get("phone"),
+              phone,
 
             email:
-              formData.get("email"),
+              String(
+                formData.get(
+                  "email"
+                ) || ""
+              ).trim(),
 
             departamento:
-              formData.get(
-                "department"
-              ),
+              String(
+                formData.get(
+                  "department"
+                ) || ""
+              ).trim(),
 
             ciudad:
-              formData.get("city"),
+              String(
+                formData.get(
+                  "city"
+                ) || ""
+              ).trim(),
 
             direccion:
-              formData.get("address"),
+              String(
+                formData.get(
+                  "address"
+                ) || ""
+              ).trim(),
 
             barrio:
-              formData.get(
-                "neighborhood"
-              ),
+              String(
+                formData.get(
+                  "neighborhood"
+                ) || ""
+              ).trim(),
 
             referencia:
-              formData.get(
-                "reference"
-              ),
+              String(
+                formData.get(
+                  "reference"
+                ) || ""
+              ).trim(),
 
             indicaciones:
-              formData.get("notes")
+              String(
+                formData.get(
+                  "notes"
+                ) || ""
+              ).trim()
 
           }
 
         };
 
 
-        /* =========================
-           ENVIAR A API VERCEL
-        ========================= */
+        /* =================================
+           ENVIAR A API DE VERCEL
+        ================================= */
 
         const response =
           await fetch(
             "/api/pedido-contra-entrega",
             {
 
-              method: "POST",
+              method:
+                "POST",
 
               headers: {
 
@@ -812,13 +1029,30 @@ if (checkoutForm) {
           );
 
 
-        /* =========================
-           RESPUESTA
-        ========================= */
+        /* =================================
+           LEER RESPUESTA
+        ================================= */
 
-        const result =
-          await response.json();
+        let result;
 
+
+        try {
+
+          result =
+            await response.json();
+
+        } catch (error) {
+
+          throw new Error(
+            "El servidor devolvió una respuesta inválida."
+          );
+
+        }
+
+
+        /* =================================
+           ERROR
+        ================================= */
 
         if (
           !response.ok ||
@@ -833,9 +1067,9 @@ if (checkoutForm) {
         }
 
 
-        /* =========================
+        /* =================================
            PEDIDO EXITOSO
-        ========================= */
+        ================================= */
 
         closeCheckout();
 
@@ -854,7 +1088,8 @@ if (checkoutForm) {
           successTotal.textContent =
             formatPrice(
               result.total ||
-              product.price * quantity
+              product.price *
+                quantity
             );
 
         }
@@ -883,6 +1118,7 @@ if (checkoutForm) {
 
 
         alert(
+          error.message ||
           "No pudimos registrar tu pedido en este momento. Por favor intenta nuevamente."
         );
 
@@ -942,7 +1178,8 @@ if (successClose) {
 
       /* VOLVER CANTIDAD A 1 */
 
-      quantity = 1;
+      quantity =
+        1;
 
       updateQuantity();
 
@@ -970,93 +1207,97 @@ const faqQuestions =
   );
 
 
-faqQuestions.forEach((question) => {
+faqQuestions.forEach(
+  (question) => {
 
-  question.addEventListener(
-    "click",
-    () => {
+    question.addEventListener(
+      "click",
+      () => {
 
-      const answer =
-        question.nextElementSibling;
+        const answer =
+          question.nextElementSibling;
 
-      const icon =
-        question.querySelector(
-          ".faq-icon"
-        );
-
-      const isOpen =
-        question.classList.contains(
-          "active"
-        );
-
-
-      /* CERRAR TODAS */
-
-      faqQuestions.forEach((item) => {
-
-        item.classList.remove(
-          "active"
-        );
-
-
-        const itemIcon =
-          item.querySelector(
+        const icon =
+          question.querySelector(
             ".faq-icon"
           );
 
-        const itemAnswer =
-          item.nextElementSibling;
+        const isOpen =
+          question.classList.contains(
+            "active"
+          );
 
 
-        if (itemIcon) {
+        /* CERRAR TODAS */
 
-          itemIcon.textContent =
-            "+";
+        faqQuestions.forEach(
+          (item) => {
 
-        }
-
-
-        if (itemAnswer) {
-
-          itemAnswer.style.maxHeight =
-            null;
-
-        }
-
-      });
+            item.classList.remove(
+              "active"
+            );
 
 
-      /* ABRIR SELECCIONADA */
+            const itemIcon =
+              item.querySelector(
+                ".faq-icon"
+              );
 
-      if (!isOpen) {
+            const itemAnswer =
+              item.nextElementSibling;
 
-        question.classList.add(
-          "active"
+
+            if (itemIcon) {
+
+              itemIcon.textContent =
+                "+";
+
+            }
+
+
+            if (itemAnswer) {
+
+              itemAnswer.style.maxHeight =
+                null;
+
+            }
+
+          }
         );
 
 
-        if (icon) {
+        /* ABRIR SELECCIONADA */
 
-          icon.textContent =
-            "−";
+        if (!isOpen) {
 
-        }
+          question.classList.add(
+            "active"
+          );
 
 
-        if (answer) {
+          if (icon) {
 
-          answer.style.maxHeight =
-            answer.scrollHeight +
-            "px";
+            icon.textContent =
+              "−";
+
+          }
+
+
+          if (answer) {
+
+            answer.style.maxHeight =
+              answer.scrollHeight +
+              "px";
+
+          }
 
         }
 
       }
+    );
 
-    }
-  );
-
-});
+  }
+);
 
 
 /* =========================================================
@@ -1067,8 +1308,13 @@ document.addEventListener(
   "keydown",
   (event) => {
 
-    if (event.key !== "Escape") {
+    if (
+      event.key !==
+      "Escape"
+    ) {
+
       return;
+
     }
 
 
