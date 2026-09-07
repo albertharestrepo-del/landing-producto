@@ -2695,3 +2695,204 @@ img {
   }
 
 }
+/* ========================================
+   BOTÓN PRINCIPAL CONTRA ENTREGA VERDE
+======================================== */
+
+.cod-buy-button {
+  position: relative;
+
+  width: 100%;
+  min-height: 70px;
+
+  margin: 10px 0 22px;
+
+  padding: 13px 24px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background: #138A36;
+  color: #ffffff;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 3px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 10px 30px
+    rgba(19, 138, 54, 0.28);
+
+  animation:
+    codMainPulse 1.8s ease-in-out infinite;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+/* TEXTO PRINCIPAL */
+
+.cod-buy-button strong {
+  position: relative;
+  z-index: 2;
+
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 900;
+
+  letter-spacing: 1.3px;
+}
+
+
+/* TEXTO SECUNDARIO */
+
+.cod-buy-button span {
+  position: relative;
+  z-index: 2;
+
+  color: rgba(255, 255, 255, 0.85);
+
+  font-size: 10px;
+  font-weight: 600;
+}
+
+
+/* HOVER */
+
+.cod-buy-button:hover {
+  background: #0F6F2B;
+
+  color: #ffffff;
+
+  transform: scale(1.015);
+
+  box-shadow:
+    0 13px 35px
+    rgba(19, 138, 54, 0.36);
+}
+
+
+.cod-buy-button:hover span {
+  color: #ffffff;
+}
+
+
+/* ========================================
+   EFECTO DE BRILLO
+======================================== */
+
+.cod-buy-button::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -110%;
+
+  width: 45%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      110deg,
+      transparent,
+      rgba(255, 255, 255, 0.38),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  animation:
+    codMainShine 2.7s ease-in-out infinite;
+
+  pointer-events: none;
+}
+
+
+/* ========================================
+   MOVIMIENTO SUAVE
+======================================== */
+
+@keyframes codMainPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.018);
+  }
+
+}
+
+
+@keyframes codMainShine {
+
+  0% {
+    left: -110%;
+  }
+
+  45% {
+    left: 140%;
+  }
+
+  100% {
+    left: 140%;
+  }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+  .cod-buy-button {
+    min-height: 64px;
+
+    padding: 11px 18px;
+
+    border-radius: 999px;
+  }
+
+
+  .cod-buy-button strong {
+    font-size: 10.5px;
+
+    letter-spacing: 0.8px;
+  }
+
+
+  .cod-buy-button span {
+    font-size: 9px;
+  }
+
+}
+
+
+/* ========================================
+   ACCESIBILIDAD
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .cod-buy-button,
+  .cod-buy-button::after {
+    animation: none;
+  }
+
+}
