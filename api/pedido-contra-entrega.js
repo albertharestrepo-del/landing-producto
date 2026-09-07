@@ -1,6 +1,29 @@
-/* =========================================
-     SOLO ACEPTAR POST
-  ========================================= */
+/* =========================================================
+   RS IMPORTS
+   API PEDIDOS CONTRA ENTREGA
+   VERCEL -> GOOGLE APPS SCRIPT
+========================================================= */
+
+export default async function handler(req, res) {
+
+
+  /* =======================================================
+     PRUEBA DE API
+  ======================================================= */
+
+  if (req.method === "GET") {
+
+    return res.status(200).json({
+      success: true,
+      message: "API de pedidos RS Imports activa"
+    });
+
+  }
+
+
+  /* =======================================================
+     SOLO PERMITIR POST PARA PEDIDOS
+  ======================================================= */
 
   if (req.method !== "POST") {
 
@@ -14,9 +37,10 @@
 
   try {
 
-    /* =========================================
+
+    /* =====================================================
        VARIABLES PRIVADAS DE VERCEL
-    ========================================= */
+    ===================================================== */
 
     const appsScriptUrl =
       process.env.APPS_SCRIPT_URL;
@@ -25,25 +49,51 @@
       process.env.API_SECRET;
 
 
-    if (!appsScriptUrl || !apiSecret) {
+    if (!appsScriptUrl) {
+
+      console.error(
+        "Falta APPS_SCRIPT_URL"
+      );
+
 
       return res.status(500).json({
         success: false,
         message:
-          "La API no está configurada correctamente."
+          "La conexión con Google Sheets no está configurada."
       });
 
     }
 
 
-    /* =========================================
-       DATOS RECIBIDOS DEL CHECKOUT
-    ========================================= */
+    if (!apiSecret) {
 
-    const data = req.body;
+      console.error(
+        "Falta API_SECRET"
+      );
 
 
-    if (!data || !data.cliente) {
+      return res.status(500).json({
+        success: false,
+        message:
+          "La seguridad de pedidos no está configurada."
+      });
+
+    }
+
+
+
+    /* =====================================================
+       DATOS RECIBIDOS
+    ===================================================== */
+
+    const data =
+      req.body;
+
+
+    if (
+      !data ||
+      !data.cliente
+    ) {
 
       return res.status(400).json({
         success: false,
@@ -54,99 +104,162 @@
     }
 
 
-    /* =========================================
-       PREPARAR PEDIDO
-    ========================================= */
 
-    const orderData = {
+    /* =====================================================
+       CANTIDAD
+    ===================================================== */
 
-      apiSecret: apiSecret,
+    const cantidad =
+      Math.max(
+        1,
+        parseInt(
+          data.cantidad,
+          10
+        ) || 1
+      );
 
-      producto:
-        "Caja Fuerte Digital de Acero Reforzado",
 
-      cantidad:
-        Math.max(
-          1,
-          Number(data.cantidad) || 1
-        ),
 
-      cliente: {
+    /* =====================================================
+       LIMPIAR INFORMACIÓN DEL CLIENTE
+    ===================================================== */
 
-        nombre:
-          String(
-            data.cliente.nombre || ""
-          ).trim(),
+    const cliente = {
 
-        celular:
-          String(
-            data.cliente.celular || ""
-          ).trim(),
+      nombre:
+        String(
+          data.cliente.nombre || ""
+        ).trim(),
 
-        email:
-          String(
-            data.cliente.email || ""
-          ).trim(),
+      celular:
+        String(
+          data.cliente.celular || ""
+        ).trim(),
 
-        departamento:
-          String(
-            data.cliente.departamento || ""
-          ).trim(),
+      email:
+        String(
+          data.cliente.email || ""
+        ).trim(),
 
-        ciudad:
-          String(
-            data.cliente.ciudad || ""
-          ).trim(),
+      departamento:
+        String(
+          data.cliente.departamento || ""
+        ).trim(),
 
-        direccion:
-          String(
-            data.cliente.direccion || ""
-          ).trim(),
+      ciudad:
+        String(
+          data.cliente.ciudad || ""
+        ).trim(),
 
-        barrio:
-          String(
-            data.cliente.barrio || ""
-          ).trim(),
+      direccion:
+        String(
+          data.cliente.direccion || ""
+        ).trim(),
 
-        referencia:
-          String(
-            data.cliente.referencia || ""
-          ).trim(),
+      barrio:
+        String(
+          data.cliente.barrio || ""
+        ).trim(),
 
-        indicaciones:
-          String(
-            data.cliente.indicaciones || ""
-          ).trim()
+      referencia:
+        String(
+          data.cliente.referencia || ""
+        ).trim(),
 
-      }
+      indicaciones:
+        String(
+          data.cliente.indicaciones || ""
+        ).trim()
 
     };
 
 
-    /* =========================================
-       VALIDACIÓN
-    ========================================= */
 
-    if (
-      !orderData.cliente.nombre ||
-      !orderData.cliente.celular ||
-      !orderData.cliente.departamento ||
-      !orderData.cliente.ciudad ||
-      !orderData.cliente.direccion
-    ) {
+    /* =====================================================
+       VALIDACIONES
+    ===================================================== */
+
+    if (!cliente.nombre) {
 
       return res.status(400).json({
         success: false,
         message:
-          "Faltan datos obligatorios."
+          "El nombre es obligatorio."
       });
 
     }
 
 
-    /* =========================================
-       ENVIAR A GOOGLE APPS SCRIPT
-    ========================================= */
+    if (!cliente.celular) {
+
+      return res.status(400).json({
+        success: false,
+        message:
+          "El celular es obligatorio."
+      });
+
+    }
+
+
+    if (!cliente.departamento) {
+
+      return res.status(400).json({
+        success: false,
+        message:
+          "El departamento es obligatorio."
+      });
+
+    }
+
+
+    if (!cliente.ciudad) {
+
+      return res.status(400).json({
+        success: false,
+        message:
+          "La ciudad es obligatoria."
+      });
+
+    }
+
+
+    if (!cliente.direccion) {
+
+      return res.status(400).json({
+        success: false,
+        message:
+          "La dirección es obligatoria."
+      });
+
+    }
+
+
+
+    /* =====================================================
+       PREPARAR PEDIDO PARA GOOGLE
+    ===================================================== */
+
+    const orderData = {
+
+      apiSecret:
+        apiSecret,
+
+      producto:
+        "Caja Fuerte Digital de Acero Reforzado",
+
+      cantidad:
+        cantidad,
+
+      cliente:
+        cliente
+
+    };
+
+
+
+    /* =====================================================
+       ENVIAR PEDIDO A GOOGLE APPS SCRIPT
+    ===================================================== */
 
     const googleResponse =
       await fetch(
@@ -161,11 +274,18 @@
           },
 
           body:
-            JSON.stringify(orderData)
+            JSON.stringify(
+              orderData
+            )
 
         }
       );
 
+
+
+    /* =====================================================
+       LEER RESPUESTA DE GOOGLE
+    ===================================================== */
 
     const responseText =
       await googleResponse.text();
@@ -177,52 +297,60 @@
     try {
 
       googleData =
-        JSON.parse(responseText);
+        JSON.parse(
+          responseText
+        );
 
     } catch (error) {
 
+
       console.error(
-        "Respuesta Google:",
+        "Respuesta inesperada de Google:",
         responseText
       );
+
 
       return res.status(502).json({
         success: false,
         message:
-          "Google no devolvió una respuesta válida."
+          "Google Sheets devolvió una respuesta inválida."
       });
 
     }
 
 
-    /* =========================================
-       GOOGLE REPORTÓ ERROR
-    ========================================= */
+
+    /* =====================================================
+       ERROR REPORTADO POR APPS SCRIPT
+    ===================================================== */
 
     if (!googleData.success) {
 
       console.error(
-        "Error Apps Script:",
+        "Apps Script reportó error:",
         googleData
       );
+
 
       return res.status(400).json({
         success: false,
         message:
           googleData.message ||
-          "No fue posible registrar el pedido."
+          "No fue posible guardar el pedido."
       });
 
     }
 
 
-    /* =========================================
-       PEDIDO GUARDADO
-    ========================================= */
+
+    /* =====================================================
+       TODO CORRECTO
+    ===================================================== */
 
     return res.status(200).json({
 
-      success: true,
+      success:
+        true,
 
       orderId:
         googleData.orderId,
@@ -238,21 +366,23 @@
 
   } catch (error) {
 
+
     console.error(
-      "ERROR API PEDIDO:",
+      "ERROR API CONTRA ENTREGA:",
       error
     );
 
 
     return res.status(500).json({
 
-      success: false,
+      success:
+        false,
 
       message:
-        "Ocurrió un error registrando el pedido."
+        "Ocurrió un error al registrar el pedido."
 
     });
 
   }
 
-};
+}
